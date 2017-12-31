@@ -1,114 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:padding="10dp"
-    android:background="@color/Color1"
-
-    tools:context="vision.google.com.qrcodescanner.MainActivity"
-    android:orientation="vertical">
+    tools:context="vision.google.com.qrcodescanner.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="27sp"
-            android:text="Nhập thông tin thiết bị"
-            android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginTop="40dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chọn loại thiết bị"
-            android:textSize="20sp"
-            android:layout_marginRight="10dp"
-            />
-        <Spinner
-            android:id="@+id/spinnerLoai"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="aaaaa"
-            android:gravity="center"
-            >
-        </Spinner>
+            android:layout_marginTop="40dp">
 
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="NHẬP THÔNG TIN"
+                android:textColor="@color/White"
+                android:textSize="27sp" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <EditText
-            android:id="@+id/Name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="25sp"
-            android:padding="5dp"
-            android:gravity="center_horizontal"
-            android:hint="Nhập tên"
-            />
-    </LinearLayout>
+            android:layout_marginTop="40dp"
+            android:padding="10dp"
+            android:weightSum="2">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="Chọn loại thiết bị"
+                android:textSize="20sp"
+                android:textColor="@color/White"
+                />
 
-        <EditText
-            android:id="@+id/result"
-            android:layout_width="235dp"
+            <Spinner
+
+                android:textColor="@color/White"
+                android:id="@+id/spinnerLoai"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="aaaaa"
+                android:gravity="center"></Spinner>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="25sp"
-            android:padding="5dp"
-            android:gravity="center_horizontal"
-            android:inputType="number"
-            android:hint="IMEI"
-            />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="40dp">
 
-        <Button
-            android:id="@+id/scanbtn"
-            android:layout_width="wrap_content"
+            <EditText
+                android:drawableLeft="@drawable/ic_phone_android_black_24dp"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"
+                android:id="@+id/Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:hint="Nhập tên"
+                android:padding="5dp"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scan"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </LinearLayout>
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="40dp"
+            android:weightSum="4">
 
+            <EditText
+                android:id="@+id/result"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="3"
+                android:gravity="center_horizontal"
+                android:hint="IMEI"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textSize="25sp"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"
+                />
 
+            <Button
+                android:id="@+id/scanbtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:text="Scan"
+                android:textColor="@color/background"
+                />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        >
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lưu"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </LinearLayout>
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="40dp">
 
-</LinearLayout>
+            <EditText
+                android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+                android:id="@+id/GiaNhap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:hint="Giá Nhập"
+                android:padding="5dp"
+                android:textSize="25sp"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="40dp">
+
+            <EditText
+                android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+                android:id="@+id/GiaBan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:hint="Giá Bán"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textSize="25sp"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Lưu"
+                android:textColor="@color/background"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

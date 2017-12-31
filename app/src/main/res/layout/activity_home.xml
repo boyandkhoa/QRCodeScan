@@ -7,7 +7,7 @@
     tools:context="vision.google.com.qrcodescanner.HomeActivity"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@color/backgroundcolor"
+    android:background="@drawable/background"
     android:gravity="center"
     >
     <LinearLayout

@@ -1,2 +1,3 @@
-# QRCode-using-Google-Vision-API
-This is QRCode scanning application using google vision API
+# Quyét IMEI nhập xuất điện thoại di động
+
+Coppyright : tdkhoalx@gmail.com

@@ -36,12 +36,11 @@ public class MainActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.submit);
         spinnerLoai = (Spinner)findViewById(R.id.spinnerLoai);
         result = (TextView) findViewById(R.id.result);
-
         final ArrayList<String> Loai = new ArrayList<String>();
         Loai.add("SmartPhone");
         Loai.add("Tablet");
         Loai.add("Normal");
-        ArrayAdapter arrayAdapter =  new ArrayAdapter(this, android.R.layout.simple_spinner_item,Loai);
+        ArrayAdapter arrayAdapter =  new ArrayAdapter(this, R.layout.spinner_item,Loai);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLoai.setAdapter(arrayAdapter);
         spinnerLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

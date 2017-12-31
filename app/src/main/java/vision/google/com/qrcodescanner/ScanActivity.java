@@ -1,6 +1,8 @@
 package vision.google.com.qrcodescanner;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -88,8 +90,6 @@ public class ScanActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     @Override
@@ -102,6 +102,20 @@ public class ScanActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    System.exit(1);
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        }
+    };
 
 
 
