@@ -1,6 +1,7 @@
 package vision.google.com.qrcodescanner;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,13 +40,20 @@ public class HomeActivity extends AppCompatActivity {
                 linearLayoutAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                        Intent intent = new Intent(HomeActivity.this, AddActivity.class);
                         startActivityForResult(intent,1);
                     }
                 });
             }
         }.start();
-
+        linearLayoutSell = (LinearLayout) findViewById(R.id.layoutSELL);
+        linearLayoutSell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, SellActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
 
 
     }

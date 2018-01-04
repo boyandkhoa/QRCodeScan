@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background1"
     android:padding="10dp"
-    tools:context="vision.google.com.qrcodescanner.MainActivity">
+    android:orientation="vertical"
+    tools:context="vision.google.com.qrcodescanner.AddActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="NHẬP THÔNG TIN"
+            android:textColor="@color/White"
+            android:textSize="27sp" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:text="NHẬP THÔNG TIN"
-                android:textColor="@color/White"
-                android:textSize="27sp" />
-        </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,6 +89,7 @@
             android:weightSum="4">
 
             <EditText
+                android:drawableLeft="@drawable/ic_texture_black_24dp"
                 android:id="@+id/result"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -115,27 +117,7 @@
                 />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="40dp">
 
-            <EditText
-                android:drawableLeft="@drawable/ic_attach_money_black_24dp"
-                android:id="@+id/GiaNhap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_horizontal"
-                android:inputType="number"
-                android:hint="Giá Nhập"
-                android:padding="5dp"
-                android:textSize="25sp"
-                android:textColor="@color/White"
-                android:textColorHint="@color/White"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -163,6 +145,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:padding="10dp"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="3"
+                android:text="Chọn ảnh"
+                android:gravity="center_horizontal"
+                android:textSize="25sp"
+                android:textColor="@color/White"
+                />
+
+            <ImageButton
+                android:src="@drawable/ic_add_a_photo_black_24dp"
+                android:id="@+id/chooseImage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="aaaaa"
+                android:gravity="center">
+
+            </ImageButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:gravity="center">
 
             <Button
@@ -179,4 +193,5 @@
 
 
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

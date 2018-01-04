@@ -16,7 +16,7 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".HomeActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ScanActivity" />
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SrollView"></activity>
+        <activity android:name=".AddActivity" />
+        <activity android:name=".SrollView" />
+        <activity android:name=".SellActivity" />
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>

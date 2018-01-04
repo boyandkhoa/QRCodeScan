@@ -7,7 +7,7 @@
     tools:context="vision.google.com.qrcodescanner.HomeActivity"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@drawable/background"
+    android:background="@drawable/background1"
     android:gravity="center"
     >
     <LinearLayout
@@ -67,6 +67,7 @@
             android:layout_height="190dp"
             android:layout_margin="5dp"        >
             <LinearLayout
+                android:id="@+id/layoutSELL"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -117,6 +118,7 @@
             android:layout_height="150dp"
             android:layout_margin="10dp"        >
             <LinearLayout
+                android:id="@+id/layoutVIEW"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
