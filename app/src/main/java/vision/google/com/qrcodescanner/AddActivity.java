@@ -3,13 +3,17 @@ package vision.google.com.qrcodescanner;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -20,25 +24,34 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class AddActivity extends AppCompatActivity {
     DatabaseReference infoPhone;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
     Button scanbtn, submit;
     TextView result;
     EditText name, imei, giaban;
     Spinner spinnerLoai;
     String LoaiPhone = "";
     ImageView imgHinh;
-    int REQUEST_CODE_IMGHinh =1;
+    int REQUEST_CODE_IMGHinh = 1;
     public static final int REQUEST_CODE = 100;
     public static final int PERMISSION_REQUEST = 200;
 
@@ -56,7 +69,8 @@ public class AddActivity extends AppCompatActivity {
         spinnerLoai = (Spinner) findViewById(R.id.spinnerLoai);
         result = (TextView) findViewById(R.id.result);
         giaban.addTextChangedListener(onTextChangedListener());
-        imgHinh = (ImageView)findViewById(R.id.imgHinh);
+        imgHinh = (ImageView) findViewById(R.id.imgHinh);
+        final StorageReference storageRef = storage.getReferenceFromUrl("gs://phuongnammobile-8106e.appspot.com");
         final ArrayList<String> Loai = new ArrayList<String>();
         Loai.add("SmartPhone");
         Loai.add("Tablet");
@@ -90,9 +104,37 @@ public class AddActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                StorageReference mountainsRef = storageRef.child("img"+calendar.getTimeInMillis()+"jpg");
                 infoPhone = FirebaseDatabase.getInstance().getReference();
-                ClassAddPhone addPhone = new ClassAddPhone(name.getText().toString(), LoaiPhone, Integer.parseInt(giaban.getText().toString()), "Nguyễn Văn A", "02/01/2018");
-                infoPhone.child("Kho").child("Kho").child(imei.getText().toString()).setValue(addPhone);
+
+                // Get the data from an ImageView as bytes
+                imgHinh.setDrawingCacheEnabled(true);
+                imgHinh.buildDrawingCache();
+                Bitmap bitmap = imgHinh.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] data = baos.toByteArray();
+
+                UploadTask uploadTask = mountainsRef.putBytes(data);
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        Toast.makeText(AddActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        Toast.makeText(AddActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                        Log.d("AAAAAAAAAA",downloadUrl+"");
+                    }
+                });
+
+//                ClassAddPhone addPhone = new ClassAddPhone(name.getText().toString(), LoaiPhone, Integer.parseInt(giaban.getText().toString()), "Nguyễn Văn A", "02/01/2018");
+//                infoPhone.child("Kho").child("Kho").child(imei.getText().toString()).setValue(addPhone);
 
             }
         });
@@ -101,7 +143,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,REQUEST_CODE_IMGHinh);
+                startActivityForResult(intent, REQUEST_CODE_IMGHinh);
             }
         });
     }
@@ -120,7 +162,11 @@ public class AddActivity extends AppCompatActivity {
                 });
             }
         }
-
+        if (requestCode==REQUEST_CODE_IMGHinh && resultCode==RESULT_OK){
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            imgHinh.setImageBitmap(bitmap);
+        }
+            super.onActivityResult(requestCode, resultCode, data);
     }
 
 
