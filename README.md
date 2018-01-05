@@ -1,3 +1,3 @@
-# Quyét IMEI nhập xuất điện thoại di động
+# Quyét IMEI nhập xuất điện thoại
 
 Coppyright : tdkhoalx@gmail.com
