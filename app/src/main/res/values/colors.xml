@@ -12,5 +12,6 @@
     <color name="background">#1975ed</color>
     <color name="White">#ffffff</color>
     <color name="back1">#6c0080</color>
+    <color name="listview">#7effa000</color>
 
 </resources>

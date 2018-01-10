@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
+    android:background="@drawable/background3"
     android:padding="10dp"
     android:orientation="vertical"
     tools:context="vision.google.com.qrcodescanner.AddActivity">
@@ -35,16 +35,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:padding="10dp"
-                android:weightSum="2">
+                android:weightSum="3">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:text="Chọn loại thiết bị"
+                    android:text="Loại:"
                     android:textSize="20sp"
                     android:textColor="@color/White"
+                    android:gravity="center"
                     />
 
                 <Spinner
@@ -53,7 +54,7 @@
                     android:id="@+id/spinnerLoai"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:contentDescription="aaaaa"
                     android:gravity="center"></Spinner>
 
@@ -131,7 +132,7 @@
 
                 <EditText
                     android:background="@drawable/radius_edittext"
-                    android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+                    android:drawableLeft="@drawable/ic_action_sell"
                     android:id="@+id/GiaBan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -150,16 +151,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:padding="10dp"
-                android:weightSum="4">
+                android:weightSum="3">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="2"
-                    android:text="Chụp ảnh"
+                    android:layout_weight="1"
+                    android:text="Ảnh"
                     android:gravity="center"
-                    android:textSize="25sp"
+                    android:textSize="17sp"
                     android:textColor="@color/White"
                     />
                 <ImageView
@@ -187,7 +188,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:text="Lưu"
-                    android:textColor="@color/background"
+                    android:textColor="#fff"
+                    android:background="@drawable/radius_button"
                     />
             </LinearLayout>
 

@@ -27,7 +27,8 @@
         <activity android:name=".AddActivity" />
         <activity android:name=".SrollView" />
         <activity android:name=".SellActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".ViewActivity"></activity>
     </application>
 
 </manifest>

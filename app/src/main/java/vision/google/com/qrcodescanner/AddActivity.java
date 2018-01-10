@@ -50,6 +50,7 @@ public class AddActivity extends AppCompatActivity {
     EditText name, imei, giaban;
     Spinner spinnerLoai;
     String LoaiPhone = "";
+    String LinkIMG = "";
     ImageView imgHinh;
     int REQUEST_CODE_IMGHinh = 1;
     public static final int REQUEST_CODE = 100;
@@ -105,7 +106,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                StorageReference mountainsRef = storageRef.child("img"+calendar.getTimeInMillis()+"jpg");
+                StorageReference mountainsRef = storageRef.child("img" + calendar.getTimeInMillis() + "jpg");
                 infoPhone = FirebaseDatabase.getInstance().getReference();
 
                 // Get the data from an ImageView as bytes
@@ -129,12 +130,13 @@ public class AddActivity extends AppCompatActivity {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                         Uri downloadUrl = taskSnapshot.getDownloadUrl();
                         Toast.makeText(AddActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        Log.d("AAAAAAAAAA",downloadUrl+"");
+                        Log.d("AAAAAAAAAA", downloadUrl + "");
+                        ClassAddPhone addPhone = new ClassAddPhone(name.getText().toString(), LoaiPhone, Integer.parseInt(giaban.getText().toString()), "Nguyễn Văn A", "02/01/2018", String.valueOf(downloadUrl));
+                        infoPhone.child("Kho").child("Kho").child(imei.getText().toString()).setValue(addPhone);
                     }
                 });
+//
 
-//                ClassAddPhone addPhone = new ClassAddPhone(name.getText().toString(), LoaiPhone, Integer.parseInt(giaban.getText().toString()), "Nguyễn Văn A", "02/01/2018");
-//                infoPhone.child("Kho").child("Kho").child(imei.getText().toString()).setValue(addPhone);
 
             }
         });
@@ -162,11 +164,11 @@ public class AddActivity extends AppCompatActivity {
                 });
             }
         }
-        if (requestCode==REQUEST_CODE_IMGHinh && resultCode==RESULT_OK){
+        if (requestCode == REQUEST_CODE_IMGHinh && resultCode == RESULT_OK) {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             imgHinh.setImageBitmap(bitmap);
         }
-            super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 

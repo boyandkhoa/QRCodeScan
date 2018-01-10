@@ -12,15 +12,18 @@ public class ClassAddPhone {
     public Integer GiaBan;
     public String NguoiNhap;
     public String NgayNhap;
+    public String LinkHinh;
+
 
     public ClassAddPhone() {
     }
 
-    public ClassAddPhone(String ten, String loai, Integer giaBan, String nguoiNhap, String ngayNhap) {
+    public ClassAddPhone(String ten, String loai, Integer giaBan, String nguoiNhap, String ngayNhap, String linkHinh) {
         Ten = ten;
         Loai = loai;
         GiaBan = giaBan;
         NguoiNhap = nguoiNhap;
         NgayNhap = ngayNhap;
+        LinkHinh = linkHinh;
     }
 }
