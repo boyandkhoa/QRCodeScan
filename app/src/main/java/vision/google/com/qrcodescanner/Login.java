@@ -12,33 +12,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
-    TextView dangky;
-    Button login;
+    TextView dangky, quenmatkhau;
     CheckInternet check = new CheckInternet();
+    Login_Function login_function = new Login_Function();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        dangky = (TextView) findViewById(R.id.dangky);
-        login = (Button) findViewById(R.id.login);
-
+        AnhXa();
         dangky.setPaintFlags(dangky.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        dangky.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Login.this, "Đăng ký", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Login.this, HomeActivity.class);
-                startActivityForResult(intent, 1);
-                finish();
-            }
-        });
-        check.CheckToast(this,this);
+        quenmatkhau.setPaintFlags(quenmatkhau.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        check.CheckToast(this, this);
     }
 
+    public void btLogin(View view) {
+
+        login_function.btLogin(this, this, view);
+        finish();
+    }
+
+    public void txtDangKy(View view) {
+        login_function.txtDangKy(this, this, view);
+    }
+
+    public void AnhXa() {
+        dangky = (TextView) findViewById(R.id.dangky);
+        quenmatkhau = (TextView) findViewById(R.id.quenmatkhau);
+    }
 }

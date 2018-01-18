@@ -7,9 +7,10 @@ import java.util.Date;
  */
 
 public class ClassAddPhone {
+    public String Imei;
     public String Ten;
     public String Loai;
-    public Integer GiaBan;
+    public String GiaBan;
     public String NguoiNhap;
     public String NgayNhap;
     public String LinkHinh;
@@ -18,7 +19,8 @@ public class ClassAddPhone {
     public ClassAddPhone() {
     }
 
-    public ClassAddPhone(String ten, String loai, Integer giaBan, String nguoiNhap, String ngayNhap, String linkHinh) {
+    public ClassAddPhone(String imei, String ten, String loai, String giaBan, String nguoiNhap, String ngayNhap, String linkHinh) {
+        Imei = imei;
         Ten = ten;
         Loai = loai;
         GiaBan = giaBan;

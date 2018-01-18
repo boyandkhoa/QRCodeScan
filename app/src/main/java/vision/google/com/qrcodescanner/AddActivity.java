@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -43,14 +45,13 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddActivity extends AppCompatActivity {
-    DatabaseReference infoPhone;
+    DatabaseReference infoPhone = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     Button scanbtn, submit;
-    TextView result;
+    TextView result,txtTitle;
     EditText name, imei, giaban;
     Spinner spinnerLoai;
     String LoaiPhone = "";
-    String LinkIMG = "";
     ImageView imgHinh;
     int REQUEST_CODE_IMGHinh = 1;
     public static final int REQUEST_CODE = 100;
@@ -61,16 +62,7 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_add);
-        name = (EditText) findViewById(R.id.Name);
-
-        imei = (EditText) findViewById(R.id.result);
-        giaban = (EditText) findViewById(R.id.GiaBan);
-        scanbtn = (Button) findViewById(R.id.scanbtn);
-        submit = (Button) findViewById(R.id.submit);
-        spinnerLoai = (Spinner) findViewById(R.id.spinnerLoai);
-        result = (TextView) findViewById(R.id.result);
-        giaban.addTextChangedListener(onTextChangedListener());
-        imgHinh = (ImageView) findViewById(R.id.imgHinh);
+        AnhXa();
         final StorageReference storageRef = storage.getReferenceFromUrl("gs://phuongnammobile-8106e.appspot.com");
         final ArrayList<String> Loai = new ArrayList<String>();
         Loai.add("SmartPhone");
@@ -106,9 +98,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                StorageReference mountainsRef = storageRef.child("img" + calendar.getTimeInMillis() + "jpg");
-                infoPhone = FirebaseDatabase.getInstance().getReference();
-
+                StorageReference mountainsRef = storageRef.child("img" + calendar.getTimeInMillis() + "jpg");//
                 // Get the data from an ImageView as bytes
                 imgHinh.setDrawingCacheEnabled(true);
                 imgHinh.buildDrawingCache();
@@ -129,13 +119,32 @@ public class AddActivity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                         Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(AddActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddActivity.this, "Luu hinh thanh cong", Toast.LENGTH_SHORT).show();
                         Log.d("AAAAAAAAAA", downloadUrl + "");
-                        ClassAddPhone addPhone = new ClassAddPhone(name.getText().toString(), LoaiPhone, Integer.parseInt(giaban.getText().toString()), "Nguyễn Văn A", "02/01/2018", String.valueOf(downloadUrl));
-                        infoPhone.child("Kho").child("Kho").child(imei.getText().toString()).setValue(addPhone);
+                        ClassAddPhone classAddPhone = new ClassAddPhone(imei.getText().toString(),
+                                name.getText().toString(),
+                                LoaiPhone,
+                                giaban.getText().toString(),
+                                "Nguyen Van A",
+                                "22/11/2017",
+                                String.valueOf(downloadUrl));
+                        infoPhone.child("Kho").child("Kho").push().setValue(classAddPhone, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if (databaseError==null) {
+                                    Toast.makeText(AddActivity.this, "Luu du lieu thanh cong", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+
+                                    Toast.makeText(AddActivity.this, "Luu du lieu that bai", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
                 });
-//
+
+//                ClassAddPhone addPhone = new ClassAddPhone(name.getText().toString(), LoaiPhone, Integer.parseInt(giaban.getText().toString()), "Nguyễn Văn A", "02/01/2018","sdfsfsfs.com"/*String.valueOf(downloadUrl)*/);
+//                infoPhone.child("Kho").child("Kho").child(imei.getText().toString()).setValue(addPhone);
 
 
             }
@@ -222,5 +231,19 @@ public class AddActivity extends AppCompatActivity {
                 giaban.addTextChangedListener(this);
             }
         };
+    }
+
+    public void AnhXa() {
+        txtTitle = (TextView) findViewById(R.id.txtTitle);
+//        txtTitle.setTypeface(Typeface.createFromAsset(getAssets(),"VINHAN.TTF"));
+        name = (EditText) findViewById(R.id.Name);
+        imei = (EditText) findViewById(R.id.result);
+        giaban = (EditText) findViewById(R.id.GiaBan);
+        scanbtn = (Button) findViewById(R.id.scanbtn);
+        submit = (Button) findViewById(R.id.submit);
+        spinnerLoai = (Spinner) findViewById(R.id.spinnerLoai);
+        result = (TextView) findViewById(R.id.result);
+        giaban.addTextChangedListener(onTextChangedListener());
+        imgHinh = (ImageView) findViewById(R.id.imgHinh);
     }
 }

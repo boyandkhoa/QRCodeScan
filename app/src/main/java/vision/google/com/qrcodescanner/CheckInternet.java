@@ -41,7 +41,7 @@ public class CheckInternet {
     }
 
 
-    private boolean isNetworkConnected(Context context) {
+    public boolean isNetworkConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
     }

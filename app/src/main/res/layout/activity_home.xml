@@ -5,8 +5,8 @@
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
-    android:padding="10dp"
+    android:background="@color/background"
+    android:padding="2dp"
     android:orientation="vertical"
     tools:context="vision.google.com.qrcodescanner.HomeActivity">
     <ScrollView
@@ -18,14 +18,12 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:orientation="vertical"
-            android:paddingTop="5dp">
+            android:paddingTop="0dp">
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="25dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="2dp"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/listview"
                 android:onClick="OpenAddPhoneActivity"
@@ -42,7 +40,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -50,8 +48,6 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/purclebackgroundgreen"
-                            android:padding="10dp"
                             android:src="@drawable/ic_action_add" />
 
                         <TextView
@@ -68,7 +64,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="3">
+                        android:layout_weight="2">
 
                         <View
                             android:layout_width="1dp"
@@ -76,25 +72,22 @@
                             android:background="@color/Lightgrayline" />
 
                         <TextView
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"
                             android:paddingTop="15dp"
-                            android:text="Thêm thiết bị vào cở sở dự liệu"
-                            android:textColor="@color/White" />
+                            android:text="Chọn thiết bị và xuất hóa đơn"
+                            android:textColor="@color/White"/>
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="25dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="2dp"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/listview"
                 android:onClick="OpenSellPhoneActivity"
@@ -111,7 +104,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -119,8 +112,6 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/cerclebackgroundpink"
-                            android:padding="10dp"
                             android:src="@drawable/ic_action_sell" />
 
                         <TextView
@@ -137,7 +128,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="3">
+                        android:layout_weight="2">
 
                         <View
                             android:layout_width="1dp"
@@ -152,16 +143,15 @@
                             android:paddingRight="15dp"
                             android:paddingTop="15dp"
                             android:text="Chọn thiết bị và xuất hóa đơn"
-                            android:textColor="@color/White"/>                 </LinearLayout>
+                            android:textColor="@color/White"/>
+                    </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="2dp"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/listview"
                 android:onClick="OpenViewActivity"
@@ -170,7 +160,7 @@
                 <LinearLayout
                     android:id="@+id/layoutVIEW"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="150dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="4">
@@ -178,7 +168,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -186,8 +176,6 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/cerclebackgroundyellow"
-                            android:padding="10dp"
                             android:src="@drawable/ic_action_view" />
 
                         <TextView
@@ -204,7 +192,198 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="3">
+                        android:layout_weight="2">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/Lightgrayline" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="15dp"
+                            android:text="Xem danh sách thiết bị đã có"
+                            android:textColor="@color/White" />                   </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="2dp"
+                android:clickable="true"
+                app:cardBackgroundColor="@color/listview"
+                android:onClick="OpenAddPhoneActivity"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:id="@+id/layoutADD2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/ic_action_username" />
+
+                        <TextView
+                            android:textColor="@color/White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="10dp"
+                            android:text="ADD"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/Lightgrayline" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="15dp"
+                            android:text="Chọn thiết bị và xuất hóa đơn"
+                            android:textColor="@color/White"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="2dp"
+                android:clickable="true"
+                app:cardBackgroundColor="@color/listview"
+                android:onClick="OpenSellPhoneActivity"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:id="@+id/layoutSELL2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/ic_action_pass" />
+
+                        <TextView
+                            android:textColor="@color/White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="10dp"
+                            android:text="SELL"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/Lightgrayline" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="15dp"
+                            android:text="Chọn thiết bị và xuất hóa đơn"
+                            android:textColor="@color/White"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:clickable="true"
+                app:cardBackgroundColor="@color/listview"
+                android:onClick="OpenViewActivity"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:id="@+id/layoutVIEW2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/ic_action_noimage" />
+
+                        <TextView
+                            android:textColor="@color/White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="10dp"
+                            android:text="VIEW"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
 
                         <View
                             android:layout_width="1dp"
@@ -224,200 +403,6 @@
             </android.support.v7.widget.CardView>
 
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="25dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground">
-
-                <LinearLayout
-                    android:id="@+id/layoutADD2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/purclebackgroundgreen"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_action_username" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="10dp"
-                            android:text="ADD"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3">
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/Lightgrayline" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Thêm thiết bị vào cở sở dự liệu"
-                            android:textColor="@android:color/darker_gray" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="25dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground">
-
-                <LinearLayout
-                    android:id="@+id/layoutSELL2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/cerclebackgroundpink"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_action_pass" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="10dp"
-                            android:text="SELL"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3">
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/Lightgrayline" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Chọn thiết bị và xuất hóa đơn"
-                            android:textColor="@android:color/darker_gray" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="25dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground">
-
-                <LinearLayout
-                    android:id="@+id/layoutVIEW2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/cerclebackgroundyellow"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_action_noimage" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="10dp"
-                            android:text="VIEW"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3">
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/Lightgrayline" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
-                            android:paddingTop="15dp"
-                            android:text="Xem danh sách thiết bị đã có"
-                            android:textColor="@android:color/darker_gray" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
