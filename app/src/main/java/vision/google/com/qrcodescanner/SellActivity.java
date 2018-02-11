@@ -25,15 +25,16 @@ public class SellActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sell);
         // Write a message to the database
         Button button = (Button) findViewById(R.id.btn);
-        final TextView textView = (TextView) findViewById(R.id.txt);
+        final TextView textView1 = (TextView) findViewById(R.id.txt1);
+        final TextView textView2 = (TextView) findViewById(R.id.txt2);
         final EditText editText = (EditText) findViewById(R.id.edt);
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final TextView textView = (TextView) findViewById(R.id.txt);
-                final EditText editText = (EditText) findViewById(R.id.edt);
+//                final TextView textView = (TextView) findViewById(R.id.txt);
+//                final EditText editText = (EditText) findViewById(R.id.edt);
                 final DatabaseReference dinosaursRef = database.getReference("dinosaurs");
 
 //                dinosaursRef.orderByChild("height").addChildEventListener(new ChildEventListener() {
@@ -68,25 +69,27 @@ public class SellActivity extends AppCompatActivity {
 //                });
 
 
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                Query query = reference
-//                        .child("Kho")
-//                        .child("Kho")
-                        .orderByChild("height")
+                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                final Query query = reference
+                        .child("Kho")
+                        .child("Kho")
+                        .orderByChild("Loai")
                         .equalTo(editText.getText().toString());
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
+                            String a = dataSnapshot.getValue().toString();
+//                            String a = dataSnapshot.toString();
+                            textView2.setText(a);// do something with the individual "issues"
                             // dataSnapshot is the "issue" node with all children with id 0
-                            for (DataSnapshot issue : dataSnapshot.getChildren()) {
-                                if (dataSnapshot.equals("GiaBan"))
-                                textView.setText(dataSnapshot.toString());// do something with the individual "issues"
-                            }
-                        }
-                        else{
-                            textView.setText("Deo co cai cho gi");
+//                            for (DataSnapshot issue : dataSnapshot.getChildren()) {
+//                                if (dataSnapshot.hasChild("Ten"))
+//                                    textView1.setText(dataSnapshot.toString());// do something with the individual "issues"
+//                            }
+
+                        } else {
+                            textView2.setText("Deo co cai cho gi");
                         }
 
                     }
@@ -104,42 +107,9 @@ public class SellActivity extends AppCompatActivity {
 
     }
 
-    public static class Dinosaur {
 
-        public int height;
-        public int weight;
 
-        public Dinosaur(int height, int weight) {
-            // ...
-        }
 
-    }
-
-    public void Click(View view) {
-        final TextView textView = (TextView) findViewById(R.id.txt);
-        final EditText editText = (EditText) findViewById(R.id.edt);
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-
-        Query query = reference.child("Kho").child("Kho").orderByChild("Imei").equalTo("2618464876");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // dataSnapshot is the "issue" node with all children with id 0
-                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
-                        editText.setText(dataSnapshot.toString());// do something with the individual "issues"
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
 
 }

@@ -1,6 +1,7 @@
 package vision.google.com.qrcodescanner;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,12 +12,14 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,9 +33,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -48,7 +54,7 @@ public class AddActivity extends AppCompatActivity {
     DatabaseReference infoPhone = FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     Button scanbtn, submit;
-    TextView result,txtTitle;
+    TextView result, txtTitle;
     EditText name, imei, giaban;
     Spinner spinnerLoai;
     String LoaiPhone = "";
@@ -56,6 +62,10 @@ public class AddActivity extends AppCompatActivity {
     int REQUEST_CODE_IMGHinh = 1;
     public static final int REQUEST_CODE = 100;
     public static final int PERMISSION_REQUEST = 200;
+    Add_Function add_function = new Add_Function();
+    All_Function all_function = new All_Function();
+    CheckInternet checkInternet = new CheckInternet();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,56 +107,137 @@ public class AddActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                StorageReference mountainsRef = storageRef.child("img" + calendar.getTimeInMillis() + "jpg");//
-                // Get the data from an ImageView as bytes
-                imgHinh.setDrawingCacheEnabled(true);
-                imgHinh.buildDrawingCache();
-                Bitmap bitmap = imgHinh.getDrawingCache();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] data = baos.toByteArray();
 
-                UploadTask uploadTask = mountainsRef.putBytes(data);
-                uploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        Toast.makeText(AddActivity.this, "Fail", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(AddActivity.this, "Luu hinh thanh cong", Toast.LENGTH_SHORT).show();
-                        Log.d("AAAAAAAAAA", downloadUrl + "");
-                        ClassAddPhone classAddPhone = new ClassAddPhone(imei.getText().toString(),
-                                name.getText().toString(),
-                                LoaiPhone,
-                                giaban.getText().toString(),
-                                "Nguyen Van A",
-                                "22/11/2017",
-                                String.valueOf(downloadUrl));
-                        infoPhone.child("Kho").child("Kho").push().setValue(classAddPhone, new DatabaseReference.CompletionListener() {
+                if (checkInternet.isNetworkConnected(AddActivity.this) == false) {
+                    checkInternet.ShowFail(AddActivity.this);
+                } else {
+                    if (add_function.CheckInfo(name.getText().toString(), imei.getText().toString(), giaban.getText().toString())) {
+                        final Calendar calendar = Calendar.getInstance();
+                        final String NgayNhap = (String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "/") + String.valueOf(calendar.get(Calendar.YEAR));
+//                add_function.ShowInfo(AddActivity.this, name.getText().toString(), imei.getText().toString()
+//                        , LoaiPhone, giaban.getText().toString()
+//                        , "Khoa Trần ZZ"
+//                        , (String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) +"/" +String.valueOf(calendar.get(Calendar.MONTH)+1) +"/" )+String.valueOf(calendar.get(Calendar.YEAR)));
+                        final Dialog dialog = new
+                                Dialog(AddActivity.this);
+                        dialog.setCancelable(false);
+                        dialog.setContentView(R.layout.info_upload);
+                        TextView txtTen = (TextView) dialog.findViewById(R.id.txtTen);
+                        TextView txtImei = (TextView) dialog.findViewById(R.id.txtImei);
+                        TextView txtLoai = (TextView) dialog.findViewById(R.id.txtLoai);
+                        TextView txtGia = (TextView) dialog.findViewById(R.id.txtGia);
+                        TextView txtNguoiNhap = (TextView) dialog.findViewById(R.id.txtNguoiNhap);
+                        TextView txtNgayNhap = (TextView) dialog.findViewById(R.id.txtNgayNhap);
+                        Button btLuu = (Button) dialog.findViewById(R.id.btnPost);
+                        Button btSua = (Button) dialog.findViewById(R.id.btnSua);
+                        txtTen.setText("Tên: " + name.getText());
+                        txtImei.setText("IMEI: " + imei.getText());
+                        txtLoai.setText("Loại: " + LoaiPhone);
+                        txtGia.setText("Giá: " + giaban.getText());
+                        txtNguoiNhap.setText("Người nhập: Khoa Trần");
+                        txtNgayNhap.setText("Ngày nhập: " + NgayNhap);
+                        btLuu.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                if (databaseError==null) {
-                                    Toast.makeText(AddActivity.this, "Luu du lieu thanh cong", Toast.LENGTH_SHORT).show();
-                                }
-                                else {
+                            public void onClick(View view) {
+                                dialog.cancel();
+                                final Dialog uploading = new
+                                        Dialog(AddActivity.this);
+                                uploading.setCancelable(false);
+                                uploading.setContentView(R.layout.uploading);
+                                uploading.show();
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                                Query query = reference
+                                        .child("Kho")
+                                        .child("Kho")
+                                        .orderByChild("Imei")
+                                        .equalTo(imei.getText().toString());
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists()) {
+                                            // dataSnapshot is the "issue" node with all children with id 0
+                                            for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                                                ;// do something with the individual "issues"
+                                            }
+                                            uploading.cancel();
+                                            Toast.makeText(AddActivity.this, "Imei đã tồn tại", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            StorageReference mountainsRef = storageRef.child("img" + calendar.getTimeInMillis() + "jpg");//
+                                            // Get the data from an ImageView as bytes
+                                            imgHinh.setDrawingCacheEnabled(true);
+                                            imgHinh.buildDrawingCache();
+                                            Bitmap bitmap = imgHinh.getDrawingCache();
+                                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                                            byte[] data = baos.toByteArray();
+                                            UploadTask uploadTask = mountainsRef.putBytes(data);
+                                            uploadTask.addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception exception) {
+                                                    // Handle unsuccessful uploads
+                                                    Toast.makeText(AddActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                @Override
+                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                                                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//                                            Toast.makeText(AddActivity.this, "Luu hinh thanh cong", Toast.LENGTH_SHORT).show();
+                                                    ClassAddPhone classAddPhone = new ClassAddPhone(imei.getText().toString(),
+                                                            name.getText().toString(),
+                                                            LoaiPhone,
+                                                            giaban.getText().toString(),
+                                                            "Nguyen Van A",
+                                                            NgayNhap,
+                                                            String.valueOf(downloadUrl));
+                                                    infoPhone.child("Kho").child("Kho").push().setValue(classAddPhone, new DatabaseReference.CompletionListener() {
+                                                        @Override
+                                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                            if (databaseError == null) {
+                                                                uploading.cancel();
+                                                                Intent myIntent = new Intent(AddActivity.this, AddActivity.class);
+                                                                startActivity(myIntent);
+                                                                finish();
+                                                                Toast.makeText(AddActivity.this, "Lưu thành công", Toast.LENGTH_SHORT).show();
 
-                                    Toast.makeText(AddActivity.this, "Luu du lieu that bai", Toast.LENGTH_SHORT).show();
-                                }
+
+                                                            } else {
+                                                                uploading.cancel();
+                                                                Intent myIntent = new Intent(AddActivity.this, AddActivity.class);
+                                                                startActivity(myIntent);
+                                                                finish();
+                                                                Toast.makeText(AddActivity.this, "Luu thất bại", Toast.LENGTH_SHORT).show();
+
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+
+                                    }
+                                });
+
+
                             }
                         });
+                        btSua.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.cancel();
+                            }
+                        });
+                        dialog.show();
+                    } else {
+                        Toast.makeText(AddActivity.this, "Chưa điền đủ thông tin", Toast.LENGTH_SHORT).show();
                     }
-                });
-
-//                ClassAddPhone addPhone = new ClassAddPhone(name.getText().toString(), LoaiPhone, Integer.parseInt(giaban.getText().toString()), "Nguyễn Văn A", "02/01/2018","sdfsfsfs.com"/*String.valueOf(downloadUrl)*/);
-//                infoPhone.child("Kho").child("Kho").child(imei.getText().toString()).setValue(addPhone);
-
-
+                }
             }
         });
 
@@ -173,7 +264,7 @@ public class AddActivity extends AppCompatActivity {
                 });
             }
         }
-        if (requestCode == REQUEST_CODE_IMGHinh && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_CODE_IMGHinh && resultCode == RESULT_OK && data != null) {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             imgHinh.setImageBitmap(bitmap);
         }
@@ -191,48 +282,6 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
-    //Number Format
-    private TextWatcher onTextChangedListener() {
-        return new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                giaban.removeTextChangedListener(this);
-
-                try {
-                    String originalString = s.toString();
-
-                    Long longval;
-                    if (originalString.contains(",")) {
-                        originalString = originalString.replaceAll(",", "");
-                    }
-                    longval = Long.parseLong(originalString);
-
-                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
-                    formatter.applyPattern("#,###,###,###");
-                    String formattedString = formatter.format(longval);
-
-                    //setting text after format to EditText
-                    giaban.setText(formattedString);
-                    giaban.setSelection(giaban.getText().length());
-                } catch (NumberFormatException nfe) {
-                    nfe.printStackTrace();
-                }
-
-                giaban.addTextChangedListener(this);
-            }
-        };
-    }
-
     public void AnhXa() {
         txtTitle = (TextView) findViewById(R.id.txtTitle);
 //        txtTitle.setTypeface(Typeface.createFromAsset(getAssets(),"VINHAN.TTF"));
@@ -243,7 +292,7 @@ public class AddActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.submit);
         spinnerLoai = (Spinner) findViewById(R.id.spinnerLoai);
         result = (TextView) findViewById(R.id.result);
-        giaban.addTextChangedListener(onTextChangedListener());
+        giaban.addTextChangedListener(add_function.onTextChangedListener(giaban));
         imgHinh = (ImageView) findViewById(R.id.imgHinh);
     }
 }

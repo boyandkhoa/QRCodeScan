@@ -75,13 +75,12 @@
 
         <Button
             android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+
             android:layout_weight="1"
             android:background="@drawable/radius_button"
             android:padding="5dp"
@@ -106,22 +105,9 @@
             android:layout_height="wrap_content"
             android:text="Đăng ký"
             android:textColor="#FFFF"
-            android:textSize="10dp"
+            android:textSize="15dp"
             android:onClick="txtDangKy"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" / "
-            android:textColor="#FFFF"
-            android:textSize="10dp" />
-        <TextView
-            android:id="@+id/quenmatkhau"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quên mật khẩu"
-            android:textColor="#FFFF"
-            android:textSize="10dp"
-            android:onClick="txtDangKy"/>
+
     </LinearLayout>
 
 </LinearLayout>

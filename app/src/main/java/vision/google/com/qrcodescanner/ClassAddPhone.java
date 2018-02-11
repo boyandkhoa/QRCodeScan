@@ -16,7 +16,7 @@ public class ClassAddPhone {
     public String LinkHinh;
 
 
-    public ClassAddPhone() {
+    public ClassAddPhone(String ten, String imei, String giaBan, String linkHinh) {
     }
 
     public ClassAddPhone(String imei, String ten, String loai, String giaBan, String nguoiNhap, String ngayNhap, String linkHinh) {

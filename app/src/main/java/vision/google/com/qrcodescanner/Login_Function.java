@@ -26,9 +26,8 @@ public class Login_Function {
         if (checkInternet.isNetworkConnected(activity) == false) {
             Toast.makeText(activity, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
         } else {
-//            Intent myIntent = new Intent(view.getContext(), HomeActivity.class);
-//            view.getContext().startActivity(myIntent);
-            Toast.makeText(activity, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(view.getContext(), SignInActivity.class);
+            view.getContext().startActivity(myIntent);
         }
     }
 }

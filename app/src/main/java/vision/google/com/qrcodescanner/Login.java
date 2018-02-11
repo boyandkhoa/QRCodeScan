@@ -22,12 +22,10 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         AnhXa();
         dangky.setPaintFlags(dangky.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        quenmatkhau.setPaintFlags(quenmatkhau.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         check.CheckToast(this, this);
     }
 
     public void btLogin(View view) {
-
         login_function.btLogin(this, this, view);
         finish();
     }
@@ -38,6 +36,6 @@ public class Login extends AppCompatActivity {
 
     public void AnhXa() {
         dangky = (TextView) findViewById(R.id.dangky);
-        quenmatkhau = (TextView) findViewById(R.id.quenmatkhau);
+
     }
 }
