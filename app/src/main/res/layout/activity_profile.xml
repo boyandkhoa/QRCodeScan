@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2"
         >
 
         <ImageView
@@ -30,84 +30,102 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="6"
         android:orientation="vertical"
-        android:weightSum="2">
+        android:weightSum="5">
 
-        <EditText
-            android:textCursorDrawable="@null"
-            android:backgroundTint="#FFF"
-            android:id="@+id/editTextUserName"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="User name"
-            android:inputType="textPersonName"
-            android:paddingLeft="10dp"
-            android:textColor="#FFFF"
-            android:textColorHint="#ffff"
-            android:textSize="15dp" />
-
-        <EditText
             android:textCursorDrawable="@null"
-            android:backgroundTint="#FFF"
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/txtUserName"
             android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
             android:paddingLeft="10dp"
             android:textColor="#FFFF"
-            android:textColorHint="#ffff"
-            android:textSize="15dp" />
+            android:textSize="17dp"
+            android:text="Username: "
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
+            android:id="@+id/txtName"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:textColor="#FFFF"
+            android:textSize="17dp"
+            android:text="Họ tên: "
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
+            android:id="@+id/txtPhone"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:textColor="#FFFF"
+            android:textSize="17dp"
+            android:text="Phone: "
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
+            android:id="@+id/txtActive"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:textColor="#FFFF"
+            android:textSize="17dp"
+            android:text="Trạng thái:   kích hoạt"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
+            android:id="@+id/txtAdmin"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:textColor="#FFFF"
+            android:textSize="17dp"
+            android:text="Chức vụ:"
+            />
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="2">
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/btChangPassword"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_below="@+id/editText2"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-
             android:layout_weight="1"
             android:background="@drawable/radius_button"
             android:padding="5dp"
             android:textSize="12dp"
-            android:text="Đăng nhập"
+            android:text="Đổi mật khẩu"
             android:textColor="#ffff"
-            android:onClick="btLogin"/>
+            android:onClick="btChangePassword"/>
 
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/dangky"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Đăng ký"
-            android:textColor="#FFFF"
-            android:textSize="15dp"
-            android:onClick="txtDangKy"/>
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package vision.google.com.qrcodescanner;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -22,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         currentApiVersion = android.os.Build.VERSION.SDK_INT;
         setContentView(R.layout.activity_home);
-        home_function.onKeyDown(1,this);
+        home_function.onKeyDown(1, this);
 
     }
 
@@ -68,4 +70,17 @@ public class HomeActivity extends AppCompatActivity {
     public void OpenViewActivity(View view) {
         home_function.OpenViewActivity(view);
     }
+
+    public void OpenProfileActivity(View view) {
+        home_function.OpenProfileActivity(view);
+    }
+
+    public void OpenManagerEmployeeActivity(View view) {
+        home_function.OpenManagerEmployeeActivity(view);
+    }
+
+    public void Logout(View view) {
+        home_function.Logout(view,HomeActivity.this);
+    }
+
 }

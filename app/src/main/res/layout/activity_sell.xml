@@ -4,43 +4,209 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
+    android:background="@color/background"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="vision.google.com.qrcodescanner.AddActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
 
-
-    <EditText
-        android:id="@+id/edt"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="cc"
-        />
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Đây là Sell"
-        android:textColor="#Ffff"
-        android:textSize="30sp" />
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Đây là Sell"
-        android:textColor="#Ffff"
-        android:textSize="30sp" />
-</LinearLayout>
+
+        <EditText
+            android:id="@+id/edtImei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#FFF"
+            android:gravity="left"
+            android:hint="Nhập Imei"
+            android:inputType="number"
+            android:padding="5dp"
+            android:textColor="@color/White"
+            android:textColorHint="@color/White"
+            android:textCursorDrawable="@null"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btScan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/radius_button2"
+                android:onClick="Scan"
+                android:text="Scan"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/radius_button"
+                android:onClick="Search"
+                android:text="Tìm"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgHinh"
+                        android:layout_width="700dp"
+                        android:layout_height="150dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Tên: "
+                        android:textColor="@color/MeterialYellow"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtImei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="IMEI: "
+                        android:textColor="@color/MeterialYellow"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtGia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Giá: "
+                        android:textColor="@color/MeterialYellow"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtLoai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Loại: "
+                        android:textColor="@color/MeterialYellow"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtNguoiNhap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Người nhập: "
+                        android:textColor="@color/MeterialYellow"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtNgayNhap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:text="Ngày nhập: "
+                        android:textColor="@color/MeterialYellow"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btSell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_button3"
+                    android:onClick="Sell"
+                    android:text="Bán"
+                    android:textColor="#fff" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
 </ScrollView>

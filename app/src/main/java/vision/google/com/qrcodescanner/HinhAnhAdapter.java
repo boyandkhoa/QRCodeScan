@@ -16,12 +16,12 @@ import java.util.List;
  * Created by Khoa Tran on 10-02-2018.
  */
 
-public class HinhAnhRow extends BaseAdapter {
+public class HinhAnhAdapter extends BaseAdapter {
     Context context;
     int mylayout;
     List<ClassAddPhone> arrayHinh;
 
-    public HinhAnhRow(Context context, int mylayout, List<ClassAddPhone> arrayHinh) {
+    public HinhAnhAdapter(Context context, int mylayout, List<ClassAddPhone> arrayHinh) {
         this.context = context;
         this.mylayout = mylayout;
         this.arrayHinh = arrayHinh;
@@ -43,8 +43,8 @@ public class HinhAnhRow extends BaseAdapter {
     }
 
     private class ViewHolder {
-        ImageView imageView;
-        TextView txtTen, txtIMEI, txtGia;
+        ImageView imageHinh;
+        TextView txtTen, txtIMEI, txtGia, txtLoai, txtNguoiNhap, txtNgayNhap;
     }
 
     @Override
@@ -54,19 +54,24 @@ public class HinhAnhRow extends BaseAdapter {
         ViewHolder holder = new ViewHolder();
         if (rowview == null) {
             rowview = inflater.inflate(mylayout, null);
-            holder.txtTen = (TextView) rowview.findViewById(R.id.RowName);
             holder.txtIMEI = (TextView) rowview.findViewById(R.id.RowIMEI);
+            holder.txtTen = (TextView) rowview.findViewById(R.id.RowName);
+            holder.txtLoai = (TextView) rowview.findViewById(R.id.RowLoai);
             holder.txtGia = (TextView) rowview.findViewById(R.id.RowGia);
-            holder.imageView = (ImageView) rowview.findViewById(R.id.RowImg);
+            holder.txtNgayNhap = (TextView) rowview.findViewById(R.id.RowNgayNhap);
+            holder.txtNguoiNhap = (TextView) rowview.findViewById(R.id.RowNguoiNhap);
+            holder.imageHinh = (ImageView) rowview.findViewById(R.id.RowImg);
             rowview.setTag(holder);
-        }
-        else{
+        } else {
             holder = (ViewHolder) rowview.getTag();
         }
-        holder.txtTen.setText(arrayHinh.get(i).Ten);
-        holder.txtIMEI.setText(arrayHinh.get(i).Imei);
-        holder.txtGia.setText(arrayHinh.get(i).GiaBan);
-        Picasso.with(context).load(arrayHinh.get(i).LinkHinh).into(holder.imageView);
+        holder.txtIMEI.setText("IMEI: " + arrayHinh.get(i).Imei);
+        holder.txtTen.setText("Tên: " + arrayHinh.get(i).Ten);
+        holder.txtLoai.setText("Loại: " + arrayHinh.get(i).Loai);
+        holder.txtGia.setText("Giá: " + arrayHinh.get(i).GiaBan);
+        holder.txtNgayNhap.setText("Ngày nhập: " + arrayHinh.get(i).NgayNhap);
+        holder.txtNguoiNhap.setText("Người nhập: " + arrayHinh.get(i).NguoiNhap);
+        Picasso.with(context).load(arrayHinh.get(i).LinkHinh).into(holder.imageHinh);
 
         return rowview;
     }

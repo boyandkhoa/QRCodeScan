@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PNMobile.iml" filepath="$PROJECT_DIR$/PNMobile.iml" />
+      <module fileurl="file://D:\Android\TTCK\PNMobile.iml" filepath="D:\Android\TTCK\PNMobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TTCK.iml" filepath="$PROJECT_DIR$/TTCK.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

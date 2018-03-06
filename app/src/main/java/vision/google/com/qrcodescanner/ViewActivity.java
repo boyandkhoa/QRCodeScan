@@ -1,53 +1,83 @@
 package vision.google.com.qrcodescanner;
 
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
-import java.lang.reflect.Array;
-import java.security.MessageDigest;
 import java.util.ArrayList;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 
 public class ViewActivity extends AppCompatActivity {
     DatabaseReference infoPhone = FirebaseDatabase.getInstance().getReference();
     ListView lvHinhAnh;
     ArrayList<ClassAddPhone> mangHinhAnh;
-    HinhAnhRow adapter = null;
+    HinhAnhAdapter adapter = null;
     String string, AES = "AES";
+
+    ArrayList<String> danhSach;
+    ArrayAdapter adapter2 = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         AnhXa();
-        adapter= new HinhAnhRow(this, R.layout.row_view, mangHinhAnh);
+
+//        danhSach = new ArrayList<String>();
+//        adapter2 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line,danhSach);
+//        lvHinhAnh.setAdapter(adapter2);
+//        infoPhone.child("Kho").child("Kho").addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                ClassAddPhone classAddPhone = dataSnapshot.getValue(ClassAddPhone.class);
+//                danhSach.add(classAddPhone.Imei +": "+classAddPhone.Ten);
+//                adapter2.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        mangHinhAnh = new ArrayList<ClassAddPhone>();
+        adapter= new HinhAnhAdapter(this, R.layout.dong_hinh_anh, mangHinhAnh);
         lvHinhAnh.setAdapter(adapter);
         LoadData();
 
-
     }
 
-    public void LoadData() {
+    private void LoadData() {
         infoPhone.child("Kho").child("Kho").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ClassAddPhone classAddPhone = dataSnapshot.getValue(ClassAddPhone.class);
-                mangHinhAnh.add(new ClassAddPhone(classAddPhone.Ten, classAddPhone.Imei, classAddPhone.GiaBan, classAddPhone.LinkHinh));
+//                Toast.makeText(ViewActivity.this, classAddPhone.Imei, Toast.LENGTH_LONG).show();
+                mangHinhAnh.add(new ClassAddPhone(classAddPhone.Imei,classAddPhone.Ten,classAddPhone.Loai,  classAddPhone.GiaBan,classAddPhone.NguoiNhap,classAddPhone.NgayNhap, classAddPhone.LinkHinh));
                 adapter.notifyDataSetChanged();
             }
 

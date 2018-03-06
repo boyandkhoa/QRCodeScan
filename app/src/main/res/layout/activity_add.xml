@@ -4,10 +4,11 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
-    android:padding="2dp"
+    android:background="@color/background"
     android:orientation="vertical"
+    android:padding="2dp"
     tools:context="vision.google.com.qrcodescanner.AddActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,20 +20,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
+            android:paddingBottom="10dp"
             android:text="Nhập Thông Tin"
             android:textColor="@color/White"
             android:textSize="27sp"
-            android:textStyle="bold"
-            android:paddingBottom="10dp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,20 +48,19 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:text="Loại:"
-                    android:textSize="20sp"
-                    android:textColor="@color/White"
                     android:gravity="center"
-                    />
+                    android:text="Loại:"
+                    android:textColor="@color/White"
+                    android:textSize="20sp" />
 
                 <Spinner
-                    android:textColor="@color/White"
                     android:id="@+id/spinnerLoai"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:contentDescription="aaaaa"
-                    android:gravity="center"></Spinner>
+                    android:gravity="center"
+                    android:textColor="@color/White"></Spinner>
 
 
             </LinearLayout>
@@ -71,19 +73,18 @@
                 android:layout_marginTop="40dp">
 
                 <EditText
-                    android:textColor="@color/White"
-                    android:textColorHint="@color/White"
                     android:id="@+id/Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:backgroundTint="#FFF"
                     android:gravity="left"
                     android:hint="Tên điện thoại"
                     android:padding="5dp"
-                    android:textSize="20sp"
+                    android:textColor="@color/White"
+                    android:textColorHint="@color/White"
                     android:textCursorDrawable="@null"
-                    android:backgroundTint="#FFF"
-                    />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -100,16 +101,15 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_weight="3"
+                    android:backgroundTint="#FFF"
                     android:gravity="left"
                     android:hint="IMEI"
                     android:inputType="number"
                     android:padding="5dp"
-                    android:textSize="20sp"
                     android:textColor="@color/White"
                     android:textColorHint="@color/White"
                     android:textCursorDrawable="@null"
-                    android:backgroundTint="#FFF"
-                    />
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/scanbtn"
@@ -118,14 +118,13 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:layout_weight="1"
-                    android:text="Scan"
-                    android:textColor="@color/White"
-                    android:background="@drawable/radius_button2"
                     android:layout_marginBottom="5dp"
-                    />
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_button2"
+                    android:text="Scan"
+                    android:textColor="@color/White" />
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -140,16 +139,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:backgroundTint="#FFF"
                     android:gravity="left"
                     android:hint="Giá Bán"
                     android:inputType="number"
                     android:padding="5dp"
-                    android:textSize="20sp"
                     android:textColor="@color/White"
                     android:textColorHint="@color/White"
                     android:textCursorDrawable="@null"
-                    android:backgroundTint="#FFF"
-                    />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -164,18 +162,19 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:text="Ảnh"
                     android:gravity="center"
-                    android:textSize="17sp"
+                    android:text="Ảnh"
                     android:textColor="@color/White"
-                    />
+                    android:textSize="17sp" />
+
                 <ImageView
                     android:id="@+id/imgHinh"
-                    android:layout_weight="2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/ic_action_noimage"
+                    android:layout_weight="2"
                     android:clickable="true"
+                    android:src="@drawable/ic_action_noimage"
+
                     />
 
 
@@ -195,11 +194,11 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:text="Lưu"
-                    android:textColor="#fff"
-                    android:background="@drawable/radius_button"
                     android:layout_marginBottom="5dp"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/radius_button"
+                    android:text="Lưu"
+                    android:textColor="#fff" />
             </LinearLayout>
 
 

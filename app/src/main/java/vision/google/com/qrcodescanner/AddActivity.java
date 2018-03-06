@@ -2,7 +2,9 @@ package vision.google.com.qrcodescanner;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -66,7 +68,6 @@ public class AddActivity extends AppCompatActivity {
     All_Function all_function = new All_Function();
     CheckInternet checkInternet = new CheckInternet();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,10 +115,7 @@ public class AddActivity extends AppCompatActivity {
                     if (add_function.CheckInfo(name.getText().toString(), imei.getText().toString(), giaban.getText().toString())) {
                         final Calendar calendar = Calendar.getInstance();
                         final String NgayNhap = (String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "/") + String.valueOf(calendar.get(Calendar.YEAR));
-//                add_function.ShowInfo(AddActivity.this, name.getText().toString(), imei.getText().toString()
-//                        , LoaiPhone, giaban.getText().toString()
-//                        , "Khoa Trần ZZ"
-//                        , (String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) +"/" +String.valueOf(calendar.get(Calendar.MONTH)+1) +"/" )+String.valueOf(calendar.get(Calendar.YEAR)));
+                        final SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
                         final Dialog dialog = new
                                 Dialog(AddActivity.this);
                         dialog.setCancelable(false);
@@ -134,7 +132,7 @@ public class AddActivity extends AppCompatActivity {
                         txtImei.setText("IMEI: " + imei.getText());
                         txtLoai.setText("Loại: " + LoaiPhone);
                         txtGia.setText("Giá: " + giaban.getText());
-                        txtNguoiNhap.setText("Người nhập: Khoa Trần");
+                        txtNguoiNhap.setText("Người nhập: "+prefs.getString("name", ""));
                         txtNgayNhap.setText("Ngày nhập: " + NgayNhap);
                         btLuu.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -162,13 +160,13 @@ public class AddActivity extends AppCompatActivity {
                                             uploading.cancel();
                                             Toast.makeText(AddActivity.this, "Imei đã tồn tại", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            StorageReference mountainsRef = storageRef.child("img" + calendar.getTimeInMillis() + "jpg");//
+                                            StorageReference mountainsRef = storageRef.child("img" + calendar.getTimeInMillis() + "png");//
                                             // Get the data from an ImageView as bytes
                                             imgHinh.setDrawingCacheEnabled(true);
                                             imgHinh.buildDrawingCache();
                                             Bitmap bitmap = imgHinh.getDrawingCache();
                                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                                             byte[] data = baos.toByteArray();
                                             UploadTask uploadTask = mountainsRef.putBytes(data);
                                             uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -184,10 +182,10 @@ public class AddActivity extends AppCompatActivity {
                                                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
 //                                            Toast.makeText(AddActivity.this, "Luu hinh thanh cong", Toast.LENGTH_SHORT).show();
                                                     ClassAddPhone classAddPhone = new ClassAddPhone(imei.getText().toString(),
-                                                            name.getText().toString(),
+                                                            name.getText().toString().toUpperCase(),
                                                             LoaiPhone,
                                                             giaban.getText().toString(),
-                                                            "Nguyen Van A",
+                                                            prefs.getString("name", ""),
                                                             NgayNhap,
                                                             String.valueOf(downloadUrl));
                                                     infoPhone.child("Kho").child("Kho").push().setValue(classAddPhone, new DatabaseReference.CompletionListener() {
