@@ -14,12 +14,13 @@ public class ClassAddPhone {
     public String NguoiNhap;
     public String NgayNhap;
     public String LinkHinh;
+    public String BaoHanh;
 
 
     public ClassAddPhone() {
     }
 
-    public ClassAddPhone(String imei, String ten, String loai, String giaBan, String nguoiNhap, String ngayNhap, String linkHinh) {
+    public ClassAddPhone(String imei, String ten, String loai, String giaBan, String nguoiNhap, String ngayNhap, String linkHinh, String baoHanh) {
         Imei = imei;
         Ten = ten;
         Loai = loai;
@@ -27,5 +28,6 @@ public class ClassAddPhone {
         NguoiNhap = nguoiNhap;
         NgayNhap = ngayNhap;
         LinkHinh = linkHinh;
+        BaoHanh = baoHanh;
     }
 }

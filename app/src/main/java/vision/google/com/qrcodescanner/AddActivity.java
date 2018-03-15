@@ -57,7 +57,7 @@ public class AddActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     Button scanbtn, submit;
     TextView result, txtTitle;
-    EditText name, imei, giaban;
+    EditText name, imei, giaban,baohanh;
     Spinner spinnerLoai;
     String LoaiPhone = "";
     ImageView imgHinh;
@@ -112,7 +112,7 @@ public class AddActivity extends AppCompatActivity {
                 if (checkInternet.isNetworkConnected(AddActivity.this) == false) {
                     checkInternet.ShowFail(AddActivity.this);
                 } else {
-                    if (add_function.CheckInfo(name.getText().toString(), imei.getText().toString(), giaban.getText().toString())) {
+                    if (add_function.CheckInfo(name.getText().toString(), imei.getText().toString(), giaban.getText().toString(),baohanh.getText().toString())) {
                         final Calendar calendar = Calendar.getInstance();
                         final String NgayNhap = (String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "/") + String.valueOf(calendar.get(Calendar.YEAR));
                         final SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
@@ -124,6 +124,7 @@ public class AddActivity extends AppCompatActivity {
                         TextView txtImei = (TextView) dialog.findViewById(R.id.txtImei);
                         TextView txtLoai = (TextView) dialog.findViewById(R.id.txtLoai);
                         TextView txtGia = (TextView) dialog.findViewById(R.id.txtGia);
+                        TextView txtBaoHanh = (TextView) dialog.findViewById(R.id.txtBaoHanh);
                         TextView txtNguoiNhap = (TextView) dialog.findViewById(R.id.txtNguoiNhap);
                         TextView txtNgayNhap = (TextView) dialog.findViewById(R.id.txtNgayNhap);
                         Button btLuu = (Button) dialog.findViewById(R.id.btnPost);
@@ -132,6 +133,7 @@ public class AddActivity extends AppCompatActivity {
                         txtImei.setText("IMEI: " + imei.getText());
                         txtLoai.setText("Loại: " + LoaiPhone);
                         txtGia.setText("Giá: " + giaban.getText());
+                        txtBaoHanh.setText("Bảo hành: " + baohanh.getText()+ " tháng");
                         txtNguoiNhap.setText("Người nhập: "+prefs.getString("name", ""));
                         txtNgayNhap.setText("Ngày nhập: " + NgayNhap);
                         btLuu.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +167,7 @@ public class AddActivity extends AppCompatActivity {
                                             imgHinh.setDrawingCacheEnabled(true);
                                             imgHinh.buildDrawingCache();
                                             Bitmap bitmap = imgHinh.getDrawingCache();
-                                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                             bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                                             byte[] data = baos.toByteArray();
                                             UploadTask uploadTask = mountainsRef.putBytes(data);
@@ -187,7 +189,8 @@ public class AddActivity extends AppCompatActivity {
                                                             giaban.getText().toString(),
                                                             prefs.getString("name", ""),
                                                             NgayNhap,
-                                                            String.valueOf(downloadUrl));
+                                                            String.valueOf(downloadUrl),
+                                                            baohanh.getText().toString());
                                                     infoPhone.child("Kho").child("Kho").push().setValue(classAddPhone, new DatabaseReference.CompletionListener() {
                                                         @Override
                                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -204,7 +207,7 @@ public class AddActivity extends AppCompatActivity {
                                                                 Intent myIntent = new Intent(AddActivity.this, AddActivity.class);
                                                                 startActivity(myIntent);
                                                                 finish();
-                                                                Toast.makeText(AddActivity.this, "Luu thất bại", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(AddActivity.this, "Lưu thất bại", Toast.LENGTH_SHORT).show();
 
                                                             }
                                                         }
@@ -286,6 +289,7 @@ public class AddActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.Name);
         imei = (EditText) findViewById(R.id.result);
         giaban = (EditText) findViewById(R.id.GiaBan);
+        baohanh = (EditText) findViewById(R.id.BaoHanh);
         scanbtn = (Button) findViewById(R.id.scanbtn);
         submit = (Button) findViewById(R.id.submit);
         spinnerLoai = (Spinner) findViewById(R.id.spinnerLoai);

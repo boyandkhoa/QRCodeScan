@@ -1,9 +1,13 @@
 package vision.google.com.qrcodescanner;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -19,12 +23,14 @@ public class ViewActivity extends AppCompatActivity {
     DatabaseReference infoPhone = FirebaseDatabase.getInstance().getReference();
     ListView lvHinhAnh;
     ArrayList<ClassAddPhone> mangHinhAnh;
+    ArrayList<ClassSellPhone> mangHinhAnh2;
     HinhAnhAdapter adapter = null;
+    HinhAnhAdapter2 adapter2 = null;
     String string, AES = "AES";
-
-    ArrayList<String> danhSach;
-    ArrayAdapter adapter2 = null;
-
+    Spinner spinner;
+    Long[] AddPhone = new Long[100000];
+    Long[] SellPhone = new Long[100000];
+    int addphone = 0, sellphone = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,53 +38,87 @@ public class ViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view);
         AnhXa();
 
-//        danhSach = new ArrayList<String>();
-//        adapter2 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line,danhSach);
-//        lvHinhAnh.setAdapter(adapter2);
-//        infoPhone.child("Kho").child("Kho").addChildEventListener(new ChildEventListener() {
+        final ArrayList<String> Loai = new ArrayList<String>();
+        Loai.add("Kho");
+        Loai.add("Đã bán");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.spiner_item2, Loai);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(AddActivity.this,Loai.get(i), Toast.LENGTH_SHORT).show();
+                String a = Loai.get(i).toString();
+                if (a == "Kho") {
+                    LoadData();
+                } else {
+                    LoadData2();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+//        lvHinhAnh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                ClassAddPhone classAddPhone = dataSnapshot.getValue(ClassAddPhone.class);
-//                danhSach.add(classAddPhone.Imei +": "+classAddPhone.Ten);
-//                adapter2.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String s = (AddPhone[i]).toString();
+//                Toast.makeText(ViewActivity.this,s, Toast.LENGTH_SHORT).show();
+////                Intent intent = new Intent(ViewActivity.this,ManagerEmployeeActivity.class);
+////                startActivity(intent);
 //            }
 //        });
-
-        mangHinhAnh = new ArrayList<ClassAddPhone>();
-        adapter= new HinhAnhAdapter(this, R.layout.dong_hinh_anh, mangHinhAnh);
-        lvHinhAnh.setAdapter(adapter);
-        LoadData();
 
     }
 
     private void LoadData() {
+        mangHinhAnh = new ArrayList<ClassAddPhone>();
+        adapter = new HinhAnhAdapter(this, R.layout.dong_hinh_anh, mangHinhAnh);
+        lvHinhAnh.setAdapter(adapter);
         infoPhone.child("Kho").child("Kho").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ClassAddPhone classAddPhone = dataSnapshot.getValue(ClassAddPhone.class);
 //                Toast.makeText(ViewActivity.this, classAddPhone.Imei, Toast.LENGTH_LONG).show();
-                mangHinhAnh.add(new ClassAddPhone(classAddPhone.Imei,classAddPhone.Ten,classAddPhone.Loai,  classAddPhone.GiaBan,classAddPhone.NguoiNhap,classAddPhone.NgayNhap, classAddPhone.LinkHinh));
+                mangHinhAnh.add(new ClassAddPhone(classAddPhone.Imei, classAddPhone.Ten, classAddPhone.Loai, classAddPhone.GiaBan, classAddPhone.NguoiNhap, classAddPhone.NgayNhap, classAddPhone.LinkHinh, classAddPhone.BaoHanh));
+                AddPhone[addphone] = Long.parseLong(classAddPhone.Imei);
                 adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void LoadData2() {
+        mangHinhAnh2 = new ArrayList<ClassSellPhone>();
+        adapter2 = new HinhAnhAdapter2(this, R.layout.dong_hinh_anh2, mangHinhAnh2);
+        lvHinhAnh.setAdapter(adapter2);
+        infoPhone.child("Kho").child("Ban").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                ClassSellPhone classAddPhone = dataSnapshot.getValue(ClassSellPhone.class);
+                mangHinhAnh2.add(new ClassSellPhone(classAddPhone.Imei, classAddPhone.Ten, classAddPhone.Loai, classAddPhone.GiaBan, classAddPhone.NguoiBan, classAddPhone.NgayBan, classAddPhone.LinkHinh, classAddPhone.BaoHanh, classAddPhone.NguoiMua, classAddPhone.SDTNguoiMua));
+                adapter2.notifyDataSetChanged();
             }
 
             @Override
@@ -105,6 +145,7 @@ public class ViewActivity extends AppCompatActivity {
 
     public void AnhXa() {
         lvHinhAnh = (ListView) findViewById(R.id.lisviewHinhAnh);
+        spinner = (Spinner) findViewById(R.id.spinner1);
     }
 
 //    private String encrypt(String string) throws Exception {

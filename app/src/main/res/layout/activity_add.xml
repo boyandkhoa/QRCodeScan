@@ -149,6 +149,28 @@
                     android:textCursorDrawable="@null"
                     android:textSize="20sp" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="40dp">
+
+                <EditText
+                    android:id="@+id/BaoHanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="#FFF"
+                    android:gravity="left"
+                    android:hint="Thời gian bảo hành(tháng)"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textColor="@color/White"
+                    android:textColorHint="@color/White"
+                    android:textCursorDrawable="@null"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

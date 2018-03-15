@@ -10,7 +10,12 @@ import java.util.logging.Logger;
  */
 
 public class Sell_Function {
-    private static MessageDigest md;
 
-
+    public boolean CheckInfo(String Customer, String PhoneCustomer, String AddressCustomer) {
+        if (Customer.trim().length() <= 0 || PhoneCustomer.matches("") || AddressCustomer.matches("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

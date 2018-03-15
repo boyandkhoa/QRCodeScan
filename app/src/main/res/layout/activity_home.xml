@@ -111,7 +111,7 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_margin="5dp"
-                            android:src="@drawable/ic_action_sell" />
+                            android:src="@drawable/ic_action_search" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -119,7 +119,7 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="5dp"
                             android:layout_marginTop="15dp"
-                            android:text="SELL"
+                            android:text="SEARCH"
                             android:textColor="@color/White"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -139,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
-                            android:text="Xuất hàng"
+                            android:text="Tìm kiếm"
                             android:textColor="@color/White"
                             android:textSize="25sp" />
                     </LinearLayout>

@@ -1,9 +1,6 @@
 package vision.google.com.qrcodescanner;
 
-import android.app.Activity;
 import android.content.Context;
-import android.text.Layout;
-import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +16,12 @@ import java.util.List;
  * Created by Khoa Tran on 10-02-2018.
  */
 
-public class HinhAnhAdapter extends BaseAdapter {
-    Activity context;
-    LayoutInflater layoutInflater;
+public class HinhAnhAdapter2 extends BaseAdapter {
+    Context context;
     int mylayout;
-    List<ClassAddPhone> arrayHinh;
+    List<ClassSellPhone> arrayHinh;
 
-    public HinhAnhAdapter(Activity context, int mylayout, List<ClassAddPhone> arrayHinh) {
+    public HinhAnhAdapter2(Context context, int mylayout, List<ClassSellPhone> arrayHinh) {
         this.context = context;
         this.mylayout = mylayout;
         this.arrayHinh = arrayHinh;
@@ -48,7 +44,7 @@ public class HinhAnhAdapter extends BaseAdapter {
 
     private class ViewHolder {
         ImageView imageHinh;
-        TextView txtTen, txtIMEI, txtGia, txtLoai, txtNguoiNhap, txtNgayNhap, txtBaoHanh;
+        TextView txtTen, txtIMEI, txtGia, txtLoai, txtNguoiNhap, txtNgayNhap, txtBaoHanh,txtKhachHang,txtSdtKhachHang;
     }
 
     @Override
@@ -58,14 +54,16 @@ public class HinhAnhAdapter extends BaseAdapter {
         ViewHolder holder = new ViewHolder();
         if (rowview == null) {
             rowview = inflater.inflate(mylayout, null);
-            holder.txtIMEI = (TextView) rowview.findViewById(R.id.RowIMEI);
-            holder.txtTen = (TextView) rowview.findViewById(R.id.RowName);
-            holder.txtLoai = (TextView) rowview.findViewById(R.id.RowLoai);
-            holder.txtGia = (TextView) rowview.findViewById(R.id.RowGia);
-            holder.txtBaoHanh = (TextView) rowview.findViewById(R.id.RowBH);
-            holder.txtNgayNhap = (TextView) rowview.findViewById(R.id.RowNgayNhap);
-            holder.txtNguoiNhap = (TextView) rowview.findViewById(R.id.RowNguoiNhap);
-            holder.imageHinh = (ImageView) rowview.findViewById(R.id.RowImg);
+            holder.txtIMEI = (TextView) rowview.findViewById(R.id.RowIMEI2);
+            holder.txtTen = (TextView) rowview.findViewById(R.id.RowName2);
+            holder.txtLoai = (TextView) rowview.findViewById(R.id.RowLoai2);
+            holder.txtGia = (TextView) rowview.findViewById(R.id.RowGia2);
+            holder.txtBaoHanh = (TextView) rowview.findViewById(R.id.RowBH2);
+            holder.txtNgayNhap = (TextView) rowview.findViewById(R.id.RowNgayNhap2);
+            holder.txtNguoiNhap = (TextView) rowview.findViewById(R.id.RowNguoiNhap2);
+            holder.txtKhachHang = (TextView) rowview.findViewById(R.id.RowKhachHang2);
+            holder.txtSdtKhachHang = (TextView) rowview.findViewById(R.id.RowSdtKhachHang2);
+            holder.imageHinh = (ImageView) rowview.findViewById(R.id.RowImg2);
             rowview.setTag(holder);
         } else {
             holder = (ViewHolder) rowview.getTag();
@@ -75,13 +73,11 @@ public class HinhAnhAdapter extends BaseAdapter {
         holder.txtLoai.setText("Loại: " + arrayHinh.get(i).Loai);
         holder.txtGia.setText("Giá: " + arrayHinh.get(i).GiaBan);
         holder.txtBaoHanh.setText("BH: " + arrayHinh.get(i).BaoHanh + " tháng");
-        holder.txtNgayNhap.setText("Ngày: " + arrayHinh.get(i).NgayNhap);
-        holder.txtNguoiNhap.setText("NV: " + arrayHinh.get(i).NguoiNhap);
+        holder.txtNgayNhap.setText("Ngày: " + arrayHinh.get(i).NgayBan);
+        holder.txtNguoiNhap.setText("NV: " + arrayHinh.get(i).NguoiBan);
+        holder.txtKhachHang.setText("KH: " + arrayHinh.get(i).NguoiMua);
+        holder.txtSdtKhachHang.setText("SĐT KH: " + arrayHinh.get(i).SDTNguoiMua);
         Picasso.with(context).load(arrayHinh.get(i).LinkHinh).into(holder.imageHinh);
-        
         return rowview;
     }
-
-
-
 }

@@ -1,11 +1,15 @@
 package vision.google.com.qrcodescanner;
 
+import android.*;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Paint;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -27,13 +31,16 @@ public class Login extends AppCompatActivity {
     EditText edtUserName, edtPass;
     CheckInternet check = new CheckInternet();
     Login_Function login_function = new Login_Function();
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public static final int PERMISSION_REQUEST = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         AnhXa();
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA}, PERMISSION_REQUEST);
+        }
         dangky.setPaintFlags(dangky.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         check.CheckToast(this, this);
         SharedPreferences prefs = this.getSharedPreferences("infoUser", Context.MODE_PRIVATE);
@@ -66,8 +73,10 @@ public class Login extends AppCompatActivity {
                     for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                         ClassAddUser classAddUser = singleSnapshot.getValue(ClassAddUser.class);
                         if (edtPass.getText().toString().equals(classAddUser.PassWord.toString())) {
+                            String a = singleSnapshot.getKey().toString();
                             SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
+                            editor.putString("keyuser", a);
                             editor.putString("username", classAddUser.UserName);
                             editor.putString("password", classAddUser.PassWord);
                             editor.putString("name", classAddUser.HoTen);

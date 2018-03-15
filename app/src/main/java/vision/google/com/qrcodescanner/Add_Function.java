@@ -101,8 +101,8 @@ public class Add_Function {
         dialog.show();
     }
 
-    public boolean CheckInfo(String ten, String imei, String gia) {
-        if (ten.trim().length() <= 0 || imei.matches("") || gia.matches("")) {
+    public boolean CheckInfo(String ten, String imei, String gia,String baohanh) {
+        if (ten.trim().length() <= 0 || imei.matches("") || gia.matches("")|| baohanh.matches("")) {
             return false;
         } else {
             return true;

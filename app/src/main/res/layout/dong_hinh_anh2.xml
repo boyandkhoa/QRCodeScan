@@ -7,7 +7,6 @@
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
     android:background="@color/background"
-    android:clickable="true"
     android:orientation="horizontal"
     android:weightSum="5"
 
@@ -21,7 +20,7 @@
         android:gravity="left">
 
         <ImageView
-            android:id="@+id/RowImg"
+            android:id="@+id/RowImg2"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="left"
@@ -31,14 +30,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:layout_weight="3"
         android:orientation="vertical"
-        android:weightSum="7">
+        android:weightSum="9">
 
         <TextView
-            android:id="@+id/RowName"
+            android:id="@+id/RowName2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
@@ -48,7 +46,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/RowIMEI"
+            android:id="@+id/RowIMEI2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
@@ -58,7 +56,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/RowGia"
+            android:id="@+id/RowGia2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
@@ -68,7 +66,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/RowLoai"
+            android:id="@+id/RowLoai2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
@@ -78,7 +76,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/RowNguoiNhap"
+            android:id="@+id/RowNguoiNhap2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
@@ -88,7 +86,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/RowNgayNhap"
+            android:id="@+id/RowNgayNhap2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
@@ -96,9 +94,8 @@
             android:text="Ngày: "
             android:textColor="@color/White"
             android:textSize="16sp" />
-
         <TextView
-            android:id="@+id/RowBH"
+            android:id="@+id/RowBH2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="5dp"
@@ -106,6 +103,28 @@
             android:text="BH: "
             android:textColor="@color/White"
             android:textSize="16sp" />
+        <TextView
+            android:id="@+id/RowKhachHang2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="KH: "
+            android:textColor="@color/White"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/RowSdtKhachHang2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="Sđt KH: "
+            android:textColor="@color/White"
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp"/>
+
+
+
     </LinearLayout>
 
 
