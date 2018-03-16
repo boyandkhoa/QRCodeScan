@@ -57,9 +57,9 @@ public class AddActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     Button scanbtn, submit;
     TextView result, txtTitle;
-    EditText name, imei, giaban,baohanh;
-    Spinner spinnerLoai;
-    String LoaiPhone = "";
+    EditText name, imei, giaban, baohanh;
+    Spinner spinnerLoai, spinnerHang;
+    String LoaiPhone = "", HangDT = "";
     ImageView imgHinh;
     int REQUEST_CODE_IMGHinh = 1;
     public static final int REQUEST_CODE = 100;
@@ -67,33 +67,19 @@ public class AddActivity extends AppCompatActivity {
     Add_Function add_function = new Add_Function();
     All_Function all_function = new All_Function();
     CheckInternet checkInternet = new CheckInternet();
-
+    final ArrayList<String> Hang = new ArrayList<String>();
+    final ArrayList<String> Loai = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_add);
         AnhXa();
+        setSpinner();
         final StorageReference storageRef = storage.getReferenceFromUrl("gs://phuongnammobile-8106e.appspot.com");
-        final ArrayList<String> Loai = new ArrayList<String>();
-        Loai.add("SmartPhone");
-        Loai.add("Tablet");
-        Loai.add("Normal");
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.spinner_item, Loai);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinnerLoai.setAdapter(arrayAdapter);
-        spinnerLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(AddActivity.this,Loai.get(i), Toast.LENGTH_SHORT).show();
-                LoaiPhone = Loai.get(i).toString();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        });
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST);
         }
@@ -112,7 +98,7 @@ public class AddActivity extends AppCompatActivity {
                 if (checkInternet.isNetworkConnected(AddActivity.this) == false) {
                     checkInternet.ShowFail(AddActivity.this);
                 } else {
-                    if (add_function.CheckInfo(name.getText().toString(), imei.getText().toString(), giaban.getText().toString(),baohanh.getText().toString())) {
+                    if (add_function.CheckInfo(name.getText().toString(), imei.getText().toString(), giaban.getText().toString(), baohanh.getText().toString())) {
                         final Calendar calendar = Calendar.getInstance();
                         final String NgayNhap = (String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "/") + String.valueOf(calendar.get(Calendar.YEAR));
                         final SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
@@ -129,12 +115,12 @@ public class AddActivity extends AppCompatActivity {
                         TextView txtNgayNhap = (TextView) dialog.findViewById(R.id.txtNgayNhap);
                         Button btLuu = (Button) dialog.findViewById(R.id.btnPost);
                         Button btSua = (Button) dialog.findViewById(R.id.btnSua);
-                        txtTen.setText("Tên: " + name.getText());
+                        txtTen.setText("Tên: " +HangDT +" " + name.getText());
                         txtImei.setText("IMEI: " + imei.getText());
                         txtLoai.setText("Loại: " + LoaiPhone);
                         txtGia.setText("Giá: " + giaban.getText());
-                        txtBaoHanh.setText("Bảo hành: " + baohanh.getText()+ " tháng");
-                        txtNguoiNhap.setText("Người nhập: "+prefs.getString("name", ""));
+                        txtBaoHanh.setText("Bảo hành: " + baohanh.getText() + " tháng");
+                        txtNguoiNhap.setText("Người nhập: " + prefs.getString("name", ""));
                         txtNgayNhap.setText("Ngày nhập: " + NgayNhap);
                         btLuu.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -184,7 +170,7 @@ public class AddActivity extends AppCompatActivity {
                                                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
 //                                            Toast.makeText(AddActivity.this, "Luu hinh thanh cong", Toast.LENGTH_SHORT).show();
                                                     ClassAddPhone classAddPhone = new ClassAddPhone(imei.getText().toString(),
-                                                            name.getText().toString().toUpperCase(),
+                                                            HangDT+" "+name.getText().toString().toUpperCase(),
                                                             LoaiPhone,
                                                             giaban.getText().toString(),
                                                             prefs.getString("name", ""),
@@ -293,8 +279,83 @@ public class AddActivity extends AppCompatActivity {
         scanbtn = (Button) findViewById(R.id.scanbtn);
         submit = (Button) findViewById(R.id.submit);
         spinnerLoai = (Spinner) findViewById(R.id.spinnerLoai);
+        spinnerHang = (Spinner) findViewById(R.id.spinnerHang);
         result = (TextView) findViewById(R.id.result);
         giaban.addTextChangedListener(add_function.onTextChangedListener(giaban));
         imgHinh = (ImageView) findViewById(R.id.imgHinh);
+    }
+
+    public void setSpinner() {
+
+        Loai.add("SmartPhone");
+        Loai.add("Tablet");
+        Loai.add("Normal");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.spinner_item, Loai);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerLoai.setAdapter(arrayAdapter);
+        spinnerLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                LoaiPhone = Loai.get(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        Hang.add("Acer");
+        Hang.add("Apple");
+        Hang.add("Asanzo");
+        Hang.add("Asus");
+        Hang.add("Avvio");
+        Hang.add("Bavapen");
+        Hang.add("BenQ");
+        Hang.add("BlackBerry");
+        Hang.add("BKAV");
+        Hang.add("Fujitsu");
+        Hang.add("FPT");
+        Hang.add("Gionee");
+        Hang.add("Huawei");
+        Hang.add("HTC");
+        Hang.add("K-Touch");
+        Hang.add("Masstel");
+        Hang.add("Meizu");
+        Hang.add("Mobiistar");
+        Hang.add("Motorola");
+        Hang.add("Nokia");
+        Hang.add("Oppo");
+        Hang.add("Panasonic");
+        Hang.add("Philips");
+        Hang.add("QMobile");
+        Hang.add("Sanyo");
+        Hang.add("Samsung");
+        Hang.add("Sony");
+        Hang.add("TCL");
+        Hang.add("Toshiba");
+        Hang.add("Viettel");
+        Hang.add("Vivo");
+        Hang.add("VNPT");
+        Hang.add("Xiaomi");
+        Hang.add("Wiko");
+        Hang.add("ZTE");
+
+        ArrayAdapter arrayAdapterHang = new ArrayAdapter(this, R.layout.spinner_item, Hang);
+        arrayAdapterHang.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerHang.setAdapter(arrayAdapterHang);
+        spinnerHang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                HangDT = Hang.get(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 }

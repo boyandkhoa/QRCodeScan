@@ -29,6 +29,7 @@
         android:textColor="@color/White"></Spinner>
 
     <ListView
+        android:dividerHeight="5dp"
         android:id="@+id/lisviewHinhAnh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -28,9 +28,6 @@ public class ViewActivity extends AppCompatActivity {
     HinhAnhAdapter2 adapter2 = null;
     String string, AES = "AES";
     Spinner spinner;
-    Long[] AddPhone = new Long[100000];
-    Long[] SellPhone = new Long[100000];
-    int addphone = 0, sellphone = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +52,7 @@ public class ViewActivity extends AppCompatActivity {
                     LoadData2();
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -83,7 +81,6 @@ public class ViewActivity extends AppCompatActivity {
                 ClassAddPhone classAddPhone = dataSnapshot.getValue(ClassAddPhone.class);
 //                Toast.makeText(ViewActivity.this, classAddPhone.Imei, Toast.LENGTH_LONG).show();
                 mangHinhAnh.add(new ClassAddPhone(classAddPhone.Imei, classAddPhone.Ten, classAddPhone.Loai, classAddPhone.GiaBan, classAddPhone.NguoiNhap, classAddPhone.NgayNhap, classAddPhone.LinkHinh, classAddPhone.BaoHanh));
-                AddPhone[addphone] = Long.parseLong(classAddPhone.Imei);
                 adapter.notifyDataSetChanged();
             }
 

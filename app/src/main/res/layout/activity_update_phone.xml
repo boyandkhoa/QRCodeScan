@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:paddingBottom="10dp"
-            android:text="Nhập Thông Tin"
+            android:text="Sửa Thông Tin"
             android:textColor="@color/White"
             android:textSize="27sp"
             android:textStyle="bold" />
@@ -64,28 +64,41 @@
 
 
             </LinearLayout>
-
             <LinearLayout
-                android:weightSum="3"
-                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="40dp"
+                >
+
+                <TextView
+                    android:id="@+id/txtImei"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="3"
+                    android:backgroundTint="#FFF"
+                    android:gravity="center"
+                    android:text="IMEI"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textColor="@color/White"
+                    android:textColorHint="@color/White"
+                    android:textCursorDrawable="@null"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="40dp">
-                <Spinner
-                    android:id="@+id/spinnerHang"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:contentDescription="aaaaa"
-                    android:gravity="center"
-                    android:textColor="@color/White"></Spinner>
 
                 <EditText
-                    android:layout_weight="2"
                     android:id="@+id/Name"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:backgroundTint="#FFF"
@@ -98,44 +111,7 @@
                     android:textSize="20sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="40dp"
-                android:weightSum="4">
 
-                <EditText
-                    android:id="@+id/result"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="3"
-                    android:backgroundTint="#FFF"
-                    android:gravity="left"
-                    android:hint="IMEI"
-                    android:inputType="number"
-                    android:padding="5dp"
-                    android:textColor="@color/White"
-                    android:textColorHint="@color/White"
-                    android:textCursorDrawable="@null"
-                    android:textSize="20sp" />
-
-                <Button
-                    android:id="@+id/scanbtn"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/radius_button2"
-                    android:text="Scan"
-                    android:textColor="@color/White" />
-            </LinearLayout>
 
 
             <LinearLayout

@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -49,10 +51,11 @@ public class HinhAnhAdapter extends BaseAdapter {
     private class ViewHolder {
         ImageView imageHinh;
         TextView txtTen, txtIMEI, txtGia, txtLoai, txtNguoiNhap, txtNgayNhap, txtBaoHanh;
+        LinearLayout layoutDong;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowview = view;
         ViewHolder holder = new ViewHolder();
@@ -66,6 +69,7 @@ public class HinhAnhAdapter extends BaseAdapter {
             holder.txtNgayNhap = (TextView) rowview.findViewById(R.id.RowNgayNhap);
             holder.txtNguoiNhap = (TextView) rowview.findViewById(R.id.RowNguoiNhap);
             holder.imageHinh = (ImageView) rowview.findViewById(R.id.RowImg);
+            holder.layoutDong = (LinearLayout) rowview.findViewById(R.id.layoutDong);
             rowview.setTag(holder);
         } else {
             holder = (ViewHolder) rowview.getTag();
@@ -78,7 +82,21 @@ public class HinhAnhAdapter extends BaseAdapter {
         holder.txtNgayNhap.setText("Ngày: " + arrayHinh.get(i).NgayNhap);
         holder.txtNguoiNhap.setText("NV: " + arrayHinh.get(i).NguoiNhap);
         Picasso.with(context).load(arrayHinh.get(i).LinkHinh).into(holder.imageHinh);
-        
+
+        holder.layoutDong.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(context,"Long Click", Toast.LENGTH_SHORT).show();
+                return false;
+
+            }
+        });
+        holder.layoutDong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context,arrayHinh.get(i).Imei, Toast.LENGTH_SHORT).show();
+            }
+        });
         return rowview;
     }
 

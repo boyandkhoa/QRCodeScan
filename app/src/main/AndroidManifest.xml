@@ -31,7 +31,8 @@
         <activity android:name=".ViewActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".ManagerEmployeeActivity"></activity>
+        <activity android:name=".ManagerEmployeeActivity" />
+        <activity android:name=".UpdatePhoneActivity"></activity>
     </application>
 
 </manifest>

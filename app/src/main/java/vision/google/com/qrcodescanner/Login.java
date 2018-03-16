@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
         dangky.setPaintFlags(dangky.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         check.CheckToast(this, this);
         SharedPreferences prefs = this.getSharedPreferences("infoUser", Context.MODE_PRIVATE);
-        if(prefs.getString("username","").equals("")==false){
+        if (prefs.getString("username", "").equals("") == false) {
             Intent myIntent = new Intent(this, HomeActivity.class);
             this.startActivity(myIntent);
             finish();
@@ -72,31 +72,32 @@ public class Login extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                         ClassAddUser classAddUser = singleSnapshot.getValue(ClassAddUser.class);
-                        if (edtPass.getText().toString().equals(classAddUser.PassWord.toString())) {
-                            String a = singleSnapshot.getKey().toString();
-                            SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("keyuser", a);
-                            editor.putString("username", classAddUser.UserName);
-                            editor.putString("password", classAddUser.PassWord);
-                            editor.putString("name", classAddUser.HoTen);
-                            editor.putString("phone", classAddUser.NumberPhone);
-                            editor.putInt("admin", Integer.parseInt(classAddUser.Admin));
-                            editor.putInt("active", Integer.parseInt(classAddUser.Active));
-                            editor.commit();
-                            Intent myIntent = new Intent(view.getContext(), HomeActivity.class);
-                            view.getContext().startActivity(myIntent);
+                        if (classAddUser.Active.toString().equals("1")) {
+                            if (edtPass.getText().toString().equals(classAddUser.PassWord.toString())) {
+                                String a = singleSnapshot.getKey().toString();
+                                SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putString("keyuser", a);
+                                editor.putString("username", classAddUser.UserName);
+                                editor.putString("password", classAddUser.PassWord);
+                                editor.putString("name", classAddUser.HoTen);
+                                editor.putString("phone", classAddUser.NumberPhone);
+                                editor.putInt("admin", Integer.parseInt(classAddUser.Admin));
+                                editor.putInt("active", Integer.parseInt(classAddUser.Active));
+                                editor.commit();
+                                Intent myIntent = new Intent(view.getContext(), HomeActivity.class);
+                                view.getContext().startActivity(myIntent);
+                                uploading.cancel();
+                                finish();
+                            } else if (edtPass.getText().toString().equals(classAddUser.PassWord.toString()) == false) {
+                                uploading.cancel();
+                                Toast.makeText(Login.this, "Sai thông tin đăng nhập!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
                             uploading.cancel();
-                            finish();
-                        } else if (edtPass.getText().toString().equals(classAddUser.PassWord.toString()) == false) {
-                            uploading.cancel();
-                            Toast.makeText(Login.this, "Sai thông tin đăng nhập!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Tài khoản của bạn bị khóa", Toast.LENGTH_SHORT).show();
                         }
-
                     }
-//                            }
-
-
                 } else {
                     uploading.cancel();
                     Toast.makeText(Login.this, "Sai thông tin đăng nhập!", Toast.LENGTH_SHORT).show();
