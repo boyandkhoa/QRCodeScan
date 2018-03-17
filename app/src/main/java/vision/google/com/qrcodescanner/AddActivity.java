@@ -306,39 +306,20 @@ public class AddActivity extends AppCompatActivity {
         });
 
 
-        Hang.add("Acer");
-        Hang.add("Apple");
-        Hang.add("Asanzo");
-        Hang.add("Asus");
-        Hang.add("Avvio");
-        Hang.add("Bavapen");
-        Hang.add("BenQ");
-        Hang.add("BlackBerry");
-        Hang.add("BKAV");
-        Hang.add("Fujitsu");
-        Hang.add("FPT");
+        Hang.add("Acer");Hang.add("Apple");Hang.add("Asanzo");Hang.add("Asus");Hang.add("Avvio");
+        Hang.add("Bavapen");Hang.add("BenQ");Hang.add("BlackBerry");Hang.add("BKAV");
+        Hang.add("Fujitsu");Hang.add("FPT");
         Hang.add("Gionee");
-        Hang.add("Huawei");
-        Hang.add("HTC");
+        Hang.add("Huawei");Hang.add("HTC");
         Hang.add("K-Touch");
-        Hang.add("Masstel");
-        Hang.add("Meizu");
-        Hang.add("Mobiistar");
-        Hang.add("Motorola");
+        Hang.add("Masstel");Hang.add("Meizu");Hang.add("Mobiistar");Hang.add("Motorola");
         Hang.add("Nokia");
         Hang.add("Oppo");
-        Hang.add("Panasonic");
-        Hang.add("Philips");
+        Hang.add("Panasonic");Hang.add("Philips");
         Hang.add("QMobile");
-        Hang.add("Sanyo");
-        Hang.add("Samsung");
-        Hang.add("Sony");
-        Hang.add("TCL");
-        Hang.add("Toshiba");
-        Hang.add("Viettel");
-        Hang.add("Vivo");
-        Hang.add("VNPT");
-        Hang.add("Xiaomi");
+        Hang.add("Sanyo");Hang.add("Samsung");Hang.add("Sony");
+        Hang.add("TCL");Hang.add("Toshiba");
+        Hang.add("Viettel");Hang.add("Vivo");Hang.add("VNPT");Hang.add("Xiaomi");
         Hang.add("Wiko");
         Hang.add("ZTE");
 

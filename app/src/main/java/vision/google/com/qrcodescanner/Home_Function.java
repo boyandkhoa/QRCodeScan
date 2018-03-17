@@ -1,6 +1,7 @@
 package vision.google.com.qrcodescanner;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,22 +27,39 @@ public class Home_Function {
         Intent myIntent = new Intent(view.getContext(), SellActivity.class);
         view.getContext().startActivity(myIntent);
     }
+
     public void OpenViewActivity(View view) {
         Intent myIntent = new Intent(view.getContext(), ViewActivity.class);
         view.getContext().startActivity(myIntent);
     }
+
     public void OpenProfileActivity(View view) {
         Intent myIntent = new Intent(view.getContext(), ProfileActivity.class);
         view.getContext().startActivity(myIntent);
     }
-    public void OpenManagerEmployeeActivity(View view) {
-        Intent myIntent = new Intent(view.getContext(), ManagerEmployeeActivity.class);
-        view.getContext().startActivity(myIntent);
+
+    public void OpenManagerEmployeeActivity(Activity activity) {
+        SharedPreferences prefs = activity.getSharedPreferences("infoUser", Context.MODE_PRIVATE);
+
+
+
+        if (prefs.getInt("admin", 0) == 1) {
+            Intent myIntent = new Intent(activity, ManagerEmployeeActivity.class);
+            activity.startActivity(myIntent);
+        }
+        else {
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
+            AlertDialog show = builder.setTitle("Thông báo")
+                    .setMessage("Bạn không có quyền truy cập chức năng này")
+                    .setPositiveButton("Yes",null ).show();
+//            Toast.makeText(activity, "Bạn không có quyền truy cập chức năng này", Toast.LENGTH_SHORT).show();
+        }
     }
-    public void Logout(View view, Activity activity) {
-        SharedPreferences prefs =activity.getSharedPreferences("infoUser", Context.MODE_PRIVATE);
+
+    public void Logout(Activity activity) {
+        SharedPreferences prefs = activity.getSharedPreferences("infoUser", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("username","");
+        editor.putString("username", "");
         editor.commit();
         Intent myIntent = new Intent(activity, Login.class);
         activity.startActivity(myIntent);
@@ -62,6 +80,7 @@ public class Home_Function {
         }
         return false;
     }
+
     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
@@ -76,7 +95,6 @@ public class Home_Function {
             }
         }
     };
-
 
 
 }

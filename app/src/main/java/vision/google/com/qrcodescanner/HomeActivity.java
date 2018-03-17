@@ -76,11 +76,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void OpenManagerEmployeeActivity(View view) {
-        home_function.OpenManagerEmployeeActivity(view);
+        home_function.OpenManagerEmployeeActivity(HomeActivity.this);
     }
 
     public void Logout(View view) {
-        home_function.Logout(view,HomeActivity.this);
+        home_function.Logout(HomeActivity.this);
     }
 
 }
