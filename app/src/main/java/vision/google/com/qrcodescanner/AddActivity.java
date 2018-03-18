@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -69,6 +71,7 @@ public class AddActivity extends AppCompatActivity {
     CheckInternet checkInternet = new CheckInternet();
     final ArrayList<String> Hang = new ArrayList<String>();
     final ArrayList<String> Loai = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +80,6 @@ public class AddActivity extends AppCompatActivity {
         AnhXa();
         setSpinner();
         final StorageReference storageRef = storage.getReferenceFromUrl("gs://phuongnammobile-8106e.appspot.com");
-
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -102,8 +104,8 @@ public class AddActivity extends AppCompatActivity {
                         final Calendar calendar = Calendar.getInstance();
                         final String NgayNhap = (String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "/") + String.valueOf(calendar.get(Calendar.YEAR));
                         final SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
-                        final Dialog dialog = new
-                                Dialog(AddActivity.this);
+                        final Dialog dialog = new Dialog(AddActivity.this);
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         dialog.setCancelable(false);
                         dialog.setContentView(R.layout.info_upload);
                         TextView txtTen = (TextView) dialog.findViewById(R.id.txtTen);
@@ -115,7 +117,7 @@ public class AddActivity extends AppCompatActivity {
                         TextView txtNgayNhap = (TextView) dialog.findViewById(R.id.txtNgayNhap);
                         Button btLuu = (Button) dialog.findViewById(R.id.btnPost);
                         Button btSua = (Button) dialog.findViewById(R.id.btnSua);
-                        txtTen.setText("Tên: " +HangDT +" " + name.getText());
+                        txtTen.setText("Tên: " + HangDT + " " + name.getText());
                         txtImei.setText("IMEI: " + imei.getText());
                         txtLoai.setText("Loại: " + LoaiPhone);
                         txtGia.setText("Giá: " + giaban.getText());
@@ -170,7 +172,7 @@ public class AddActivity extends AppCompatActivity {
                                                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
 //                                            Toast.makeText(AddActivity.this, "Luu hinh thanh cong", Toast.LENGTH_SHORT).show();
                                                     ClassAddPhone classAddPhone = new ClassAddPhone(imei.getText().toString(),
-                                                            HangDT+" "+name.getText().toString().toUpperCase(),
+                                                            HangDT.toUpperCase() + " " + name.getText().toString().toUpperCase(),
                                                             LoaiPhone,
                                                             giaban.getText().toString(),
                                                             prefs.getString("name", ""),
@@ -306,20 +308,39 @@ public class AddActivity extends AppCompatActivity {
         });
 
 
-        Hang.add("Acer");Hang.add("Apple");Hang.add("Asanzo");Hang.add("Asus");Hang.add("Avvio");
-        Hang.add("Bavapen");Hang.add("BenQ");Hang.add("BlackBerry");Hang.add("BKAV");
-        Hang.add("Fujitsu");Hang.add("FPT");
+        Hang.add("Acer");
+        Hang.add("Apple");
+        Hang.add("Asanzo");
+        Hang.add("Asus");
+        Hang.add("Avvio");
+        Hang.add("Bavapen");
+        Hang.add("BenQ");
+        Hang.add("BlackBerry");
+        Hang.add("BKAV");
+        Hang.add("Fujitsu");
+        Hang.add("FPT");
         Hang.add("Gionee");
-        Hang.add("Huawei");Hang.add("HTC");
+        Hang.add("Huawei");
+        Hang.add("HTC");
         Hang.add("K-Touch");
-        Hang.add("Masstel");Hang.add("Meizu");Hang.add("Mobiistar");Hang.add("Motorola");
+        Hang.add("Masstel");
+        Hang.add("Meizu");
+        Hang.add("Mobiistar");
+        Hang.add("Motorola");
         Hang.add("Nokia");
         Hang.add("Oppo");
-        Hang.add("Panasonic");Hang.add("Philips");
+        Hang.add("Panasonic");
+        Hang.add("Philips");
         Hang.add("QMobile");
-        Hang.add("Sanyo");Hang.add("Samsung");Hang.add("Sony");
-        Hang.add("TCL");Hang.add("Toshiba");
-        Hang.add("Viettel");Hang.add("Vivo");Hang.add("VNPT");Hang.add("Xiaomi");
+        Hang.add("Sanyo");
+        Hang.add("Samsung");
+        Hang.add("Sony");
+        Hang.add("TCL");
+        Hang.add("Toshiba");
+        Hang.add("Viettel");
+        Hang.add("Vivo");
+        Hang.add("VNPT");
+        Hang.add("Xiaomi");
         Hang.add("Wiko");
         Hang.add("ZTE");
 

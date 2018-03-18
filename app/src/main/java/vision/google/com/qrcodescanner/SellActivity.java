@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -199,6 +201,7 @@ public class SellActivity extends AppCompatActivity {
             final SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
             final Dialog dialog = new
                     Dialog(this);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setCancelable(false);
             dialog.setContentView(R.layout.info_sell);
             TextView txtTen = (TextView) dialog.findViewById(R.id.txtTen);
@@ -225,7 +228,8 @@ public class SellActivity extends AppCompatActivity {
             btSendSMS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", edtPhoneCustomer.getText().toString(), null));
+                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"+edtPhoneCustomer.getText().toString()+";01694712987"));
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", edtPhoneCustomer.getText().toString(), null));
                     intent.putExtra("sms_body", "CỬA HÀNG ĐTDT PHƯƠNG NAM"
                             + "\n" + "Thông tin bán hàng "
                             + "\n" + "Tên ĐT: " + Name
@@ -243,6 +247,7 @@ public class SellActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (a != 0) {
+                        a=0;
                         dialog.cancel();
                         final Dialog uploading = new
                                 Dialog(SellActivity.this);

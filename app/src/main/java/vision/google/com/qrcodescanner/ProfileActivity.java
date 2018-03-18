@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         final Dialog dialog = new
                 Dialog(this);
         dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setContentView(R.layout.changepassword);
         final EditText edtMatKhauCu = (EditText) dialog.findViewById(R.id.edtMatKhauCu);
         final EditText edtMatKhauMoi = (EditText) dialog.findViewById(R.id.edtMatKhauMoi);

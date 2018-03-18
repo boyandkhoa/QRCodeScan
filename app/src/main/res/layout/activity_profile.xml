@@ -84,7 +84,7 @@
             android:paddingLeft="10dp"
             android:textColor="#FFFF"
             android:textSize="17dp"
-            android:text="Trạng thái:   kích hoạt"
+            android:text="Trạng thái: Kích hoạt"
             />
         <TextView
             android:layout_width="match_parent"

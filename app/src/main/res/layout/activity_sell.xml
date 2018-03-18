@@ -97,7 +97,9 @@
                     <ImageView
                         android:id="@+id/imgHinh"
                         android:layout_width="400px"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="left"/>
                 </LinearLayout>
 
                 <LinearLayout

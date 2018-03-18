@@ -86,7 +86,7 @@ public class HinhAnhAdapter extends BaseAdapter {
         holder.layoutDong.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Toast.makeText(context,"Long Click", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context,"Long Click", Toast.LENGTH_SHORT).show();
                 return false;
 
             }
@@ -94,7 +94,7 @@ public class HinhAnhAdapter extends BaseAdapter {
         holder.layoutDong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,arrayHinh.get(i).Imei, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context,arrayHinh.get(i).Imei, Toast.LENGTH_SHORT).show();
             }
         });
         return rowview;
