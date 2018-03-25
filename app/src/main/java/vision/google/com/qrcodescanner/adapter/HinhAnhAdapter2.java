@@ -1,4 +1,4 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import vision.google.com.qrcodescanner.function.ClassSellPhone;
+import vision.google.com.qrcodescanner.R;
 
 /**
  * Created by Khoa Tran on 10-02-2018.

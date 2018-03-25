@@ -1,16 +1,12 @@
 package vision.google.com.qrcodescanner;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+
+import vision.google.com.qrcodescanner.function.CheckInternet;
+import vision.google.com.qrcodescanner.function.Home_Function;
 
 public class HomeActivity extends AppCompatActivity {
 

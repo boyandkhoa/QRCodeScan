@@ -1,4 +1,4 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.function;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

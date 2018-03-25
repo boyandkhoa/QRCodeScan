@@ -12,6 +12,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import vision.google.com.qrcodescanner.adapter.NhanVienAdapter;
+import vision.google.com.qrcodescanner.function.ClassAddUser;
+
 public class ManagerEmployeeActivity extends AppCompatActivity {
     DatabaseReference infoUser = FirebaseDatabase.getInstance().getReference();
     ListView lvNhanVien;

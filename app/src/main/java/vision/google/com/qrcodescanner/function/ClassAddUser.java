@@ -1,4 +1,4 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.function;
 
 import java.text.NumberFormat;
 

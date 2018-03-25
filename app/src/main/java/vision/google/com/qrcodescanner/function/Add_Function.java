@@ -1,4 +1,4 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.function;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
+
+import vision.google.com.qrcodescanner.R;
 
 /**
  * Created by Khoa Tran on 11-01-2018.

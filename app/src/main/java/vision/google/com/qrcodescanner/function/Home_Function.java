@@ -1,4 +1,4 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.function;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,6 +10,13 @@ import android.content.SharedPreferences;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
+
+import vision.google.com.qrcodescanner.AddActivity;
+import vision.google.com.qrcodescanner.Login;
+import vision.google.com.qrcodescanner.ManagerEmployeeActivity;
+import vision.google.com.qrcodescanner.ProfileActivity;
+import vision.google.com.qrcodescanner.SellActivity;
+import vision.google.com.qrcodescanner.ViewActivity;
 
 /**
  * Created by Khoa Tran on 10-01-2018.

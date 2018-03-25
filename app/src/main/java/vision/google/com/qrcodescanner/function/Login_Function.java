@@ -1,10 +1,14 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.function;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
+
+import vision.google.com.qrcodescanner.HomeActivity;
+import vision.google.com.qrcodescanner.SignInActivity;
+import vision.google.com.qrcodescanner.function.CheckInternet;
 
 /**
  * Created by Khoa Tran on 10-01-2018.

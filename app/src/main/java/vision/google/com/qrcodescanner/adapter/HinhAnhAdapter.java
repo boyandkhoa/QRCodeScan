@@ -1,9 +1,7 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Layout;
-import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import vision.google.com.qrcodescanner.function.ClassAddPhone;
+import vision.google.com.qrcodescanner.R;
 
 /**
  * Created by Khoa Tran on 10-02-2018.

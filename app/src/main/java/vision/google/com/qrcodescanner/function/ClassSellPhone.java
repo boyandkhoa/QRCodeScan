@@ -1,4 +1,4 @@
-package vision.google.com.qrcodescanner;
+package vision.google.com.qrcodescanner.function;
 
 /**
  * Created by Khoa Tran on 01-01-2018.

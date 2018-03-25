@@ -103,8 +103,8 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-
-                    Toast.makeText(ProfileActivity.this, "Mật khẩu củ không đúng", Toast.LENGTH_SHORT).show();
+                    edtMatKhauCu.setError("Mật khẩu củ khống đúng");
+//                    Toast.makeText(ProfileActivity.this, "Mật khẩu củ không đúng", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -1,11 +1,11 @@
 package vision.google.com.qrcodescanner;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -15,9 +15,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+
+import vision.google.com.qrcodescanner.adapter.HinhAnhAdapter;
+import vision.google.com.qrcodescanner.adapter.HinhAnhAdapter2;
+import vision.google.com.qrcodescanner.function.ClassAddPhone;
+import vision.google.com.qrcodescanner.function.ClassSellPhone;
 
 public class ViewActivity extends AppCompatActivity {
     DatabaseReference infoPhone = FirebaseDatabase.getInstance().getReference();
@@ -26,15 +30,19 @@ public class ViewActivity extends AppCompatActivity {
     ArrayList<ClassSellPhone> mangHinhAnh2;
     HinhAnhAdapter adapter = null;
     HinhAnhAdapter2 adapter2 = null;
-    String string, AES = "AES";
-    Spinner spinner;
+    Button btnFilter;
+    String string, AES = "AES", Ngay, Thang, Nam;
+    Spinner spinner, spinnerNgay, spinnerThang, spinnerNam;
+    final ArrayList<String> arrayNgay = new ArrayList<String>();
+    final ArrayList<String> arrayThang = new ArrayList<String>();
+    final ArrayList<String> arrayNam = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         AnhXa();
-
+        setSpiner();
         final ArrayList<String> Loai = new ArrayList<String>();
         Loai.add("Kho");
         Loai.add("Đã bán");
@@ -141,9 +149,82 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     public void AnhXa() {
+        btnFilter = (Button) findViewById(R.id.btnFilter);
         lvHinhAnh = (ListView) findViewById(R.id.lisviewHinhAnh);
         spinner = (Spinner) findViewById(R.id.spinner1);
+        spinnerThang = (Spinner) findViewById(R.id.spinnerThang);
+        spinnerNam = (Spinner) findViewById(R.id.spinnerNam);
+        spinnerNgay = (Spinner) findViewById(R.id.spinnerNgay);
     }
+
+    private void Filter(View view){
+        Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
+    }
+    private void setSpiner() {
+        for (int i = 1; i <= 31; i++) {
+            arrayNgay.add(String.valueOf(i));
+        }
+        for (int i = 1; i <= 12; i++) {
+            arrayThang.add(String.valueOf(i));
+        }
+        for (int i = 2018; i <= 2047; i++) {
+            arrayNam.add(String.valueOf(i));
+        }
+
+//set spinerNgay
+        ArrayAdapter arrayAdapterNgay = new ArrayAdapter(this, R.layout.spinner_item, arrayNgay);
+        arrayAdapterNgay.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerNgay.setAdapter(arrayAdapterNgay);
+        spinnerNgay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Ngay = arrayNgay.get(i).toString();
+                Toast.makeText(ViewActivity.this, Ngay, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+//set spinerThang
+
+        ArrayAdapter arrayAdapterThang = new ArrayAdapter(this, R.layout.spinner_item, arrayThang);
+        arrayAdapterThang.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerThang.setAdapter(arrayAdapterThang);
+        spinnerThang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Thang = arrayThang.get(i).toString();
+                Toast.makeText(ViewActivity.this, Thang, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //set spinerNam
+        ArrayAdapter arrayAdapterNam = new ArrayAdapter(this, R.layout.spinner_item, arrayNam);
+        arrayAdapterNam.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerNam.setAdapter(arrayAdapterNam);
+        spinnerNam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Nam = arrayNam.get(i).toString();
+                Toast.makeText(ViewActivity.this, Nam, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+    }
+
 
 //    private String encrypt(String string) throws Exception {
 //        SecretKeySpec key = genarateKey((string));
