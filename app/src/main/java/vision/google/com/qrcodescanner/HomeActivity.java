@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import vision.google.com.qrcodescanner.function.All_Function;
 import vision.google.com.qrcodescanner.function.CheckInternet;
 import vision.google.com.qrcodescanner.function.Home_Function;
 
@@ -13,6 +14,7 @@ public class HomeActivity extends AppCompatActivity {
     private int currentApiVersion;
     CheckInternet check = new CheckInternet();
     Home_Function home_function = new Home_Function();
+    All_Function all_function = new All_Function();
 
     @Override
     @SuppressLint("NewApi")
@@ -21,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         currentApiVersion = android.os.Build.VERSION.SDK_INT;
         setContentView(R.layout.activity_home);
         home_function.onKeyDown(1, this);
+        all_function.CheckActive(this);
 
     }
 
