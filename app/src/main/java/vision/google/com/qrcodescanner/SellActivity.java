@@ -217,7 +217,7 @@ public class SellActivity extends AppCompatActivity {
             btSendSMS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"+edtPhoneCustomer.getText().toString()+";01694712987"));
+                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"+edtPhoneCustomer.getText().toString()+";0946507010"));
 //                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", edtPhoneCustomer.getText().toString(), null));
                     intent.putExtra("sms_body", "CỬA HÀNG ĐTDT PHƯƠNG NAM"
                             + "\n" + "Thông tin bán hàng "

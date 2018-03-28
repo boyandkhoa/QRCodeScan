@@ -116,4 +116,67 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void btChangePhoneNumber(View view) {
+        final SharedPreferences prefs = getSharedPreferences("infoUser", Context.MODE_PRIVATE);
+        final Dialog dialog = new
+                Dialog(this);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.changephonenumber);
+        final EditText edtMatKhau = (EditText) dialog.findViewById(R.id.edtMatKhau);
+        final EditText edtNewPhone = (EditText) dialog.findViewById(R.id.edtNewPhone);
+        Button btLuu = (Button) dialog.findViewById(R.id.btnPost);
+        Button btSua = (Button) dialog.findViewById(R.id.btnSua);
+        dialog.show();
+        btLuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (edtMatKhau.getText().toString().equals(prefs.getString("password", "DEFAULT"))) {
+                        if (edtNewPhone.getText().toString().trim().length() < 10) {
+                            edtNewPhone.setError("Số điện thoại sai");
+                        } else {
+                            final Dialog uploading = new
+                                    Dialog(ProfileActivity.this);
+                            uploading.setCancelable(false);
+                            uploading.setContentView(R.layout.uploading);
+                            uploading.show();
+                            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                            reference.child("User").child(prefs.getString("keyuser", "DEFAULT")).child("NumberPhone").setValue(edtNewPhone.getText().toString(),new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                    if (databaseError == null){
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.putString("phone", edtNewPhone.getText().toString());
+                                        editor.commit();
+                                        uploading.cancel();
+                                        Toast.makeText(ProfileActivity.this, "Đổi số điện thoại thành công", Toast.LENGTH_SHORT).show();
+                                        Intent myIntent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                                        startActivity(myIntent);
+                                        finish();
+                                    }
+                                    else{
+                                        uploading.cancel();
+                                        Toast.makeText(ProfileActivity.this, "Thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+
+                } else {
+                    edtMatKhau.setError("Mật khẩu củ khống đúng");
+//                    Toast.makeText(ProfileActivity.this, "Mật khẩu củ không đúng", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btSua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+    }
+
 }
